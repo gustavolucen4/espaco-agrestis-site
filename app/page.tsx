@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
 
 import { Cover } from "./components/Cover";
 import { SiteHeader } from "./components/SiteHeader";
@@ -22,35 +22,34 @@ export default function Home() {
             />
             <div>
               <p className="eyebrow">Espaço Cultural</p>
-              <p>@OpusDei em Caruaru - PE</p>
+              <p>Caruaru, Pernambuco</p>
             </div>
           </div>
           <h1>Espaço Agrestis</h1>
           <p className="hero-text">
-            Espaço Cultural destinado à formação integral de homens, reunindo
-            recolhimentos, cinedebates, leituras e encontros em Caruaru.
+            Formação integral de homens por meio da amizade, da cultura e da
+            vida cristã. Uma iniciativa inspirada no espírito do Opus Dei.
           </p>
           <div className="hero-actions" aria-label="Ações principais">
             <a className="button primary" href="#atividades">
               Ver próximas atividades
             </a>
             <a className="button secondary" href="#contato">
-              Falar com a comunidade
+              Entrar em contato
             </a>
           </div>
         </div>
 
         <aside className="next-card" aria-labelledby="next-title">
-          <div className="next-visual" aria-hidden="true" />
-          <span className="card-label">Em destaque</span>
-          <h2 id="next-title">Próxima atividade</h2>
-          <p className="next-title">Recolhimento mensal</p>
-          <p>
-            Uma manhã de oração, meditação e formação com sacerdote em Caruaru.
-          </p>
-          <a href="#recolhimento" className="text-link">
-            Ver detalhes
-          </a>
+          <div className="next-card-top">
+            <span className="card-label">Próxima atividade</span>
+            <span className="status-dot">Data a confirmar</span>
+          </div>
+          <div>
+            <h2 id="next-title">Recolhimento mensal</h2>
+            <p>Oração, meditação e formação com sacerdote em Caruaru.</p>
+          </div>
+          <a href="#recolhimento" className="text-link">Conhecer o recolhimento</a>
         </aside>
       </section>
 
@@ -110,7 +109,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="cinedebate" className="section muted preview-section">
+      <div className="section-band">
+      <section id="cinedebate" className="section preview-section">
         <div className="section-heading split-heading">
           <div>
             <p className="eyebrow">Cinema e conversa</p>
@@ -121,7 +121,7 @@ export default function Home() {
             </p>
           </div>
           <a className="button secondary" href="/cinedebate">
-            Ver página do Cinedebate
+            Ver filmes
           </a>
         </div>
         <div className="cover-grid preview-grid">
@@ -132,6 +132,7 @@ export default function Home() {
                 image={movie.coverImage}
                 label="Filme"
                 title={movie.title}
+                variant="movie"
               />
               <div>
                 <p className="tag">{movie.theme}</p>
@@ -142,6 +143,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      </div>
 
       <section id="livros" className="section preview-section">
         <div className="section-heading split-heading">
@@ -154,7 +156,7 @@ export default function Home() {
             </p>
           </div>
           <a className="button secondary" href="/clube-do-livro">
-            Ver página do Clube
+            Ver livros
           </a>
         </div>
         <div className="cover-grid preview-grid">
@@ -165,6 +167,7 @@ export default function Home() {
                 image={book.coverImage}
                 label="Livro"
                 title={book.title}
+                variant="book"
               />
               <div>
                 <p className="tag">{book.status}</p>
@@ -182,7 +185,7 @@ export default function Home() {
           <span>Caruaru</span>
         </div>
         <div>
-          <p className="eyebrow">Sobre a comunidade</p>
+          <p className="eyebrow">Sobre o espaço</p>
           <h2>Um espaço para formar, conviver e recomeçar</h2>
           <p>
             O Espaço Agrestis reúne homens que desejam crescer na formação
@@ -219,6 +222,14 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <a className="brand" href="/">
+          <span className="brand-mark"><img src="/logo-agrestis.jpg" alt="" /></span>
+          <span>Espaço Agrestis</span>
+        </a>
+        <p>Espaço Cultural em Caruaru, Pernambuco.</p>
+      </footer>
     </main>
   );
 }

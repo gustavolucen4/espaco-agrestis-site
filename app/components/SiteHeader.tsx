@@ -10,7 +10,7 @@ export function SiteHeader() {
         <span>Espaço Agrestis</span>
       </a>
       <nav aria-label="Navegação principal">
-        <a href="/#atividades">Atividades</a>
+        <a href="/#atividades">Agenda</a>
         <a href="/cinedebate">Cinedebate</a>
         <a href="/clube-do-livro">Livros</a>
         <a href="/#contato">Contato</a>
@@ -22,7 +22,9 @@ export function SiteHeader() {
           <span />
         </summary>
         <div className="mobile-menu-panel" aria-label="Menu mobile">
-          <a href="/#atividades">Atividades</a>
+          <p>Menu</p>
+          <a href="/">Início</a>
+          <a href="/#atividades">Agenda</a>
           <a href="/cinedebate">Cinedebate</a>
           <a href="/clube-do-livro">Livros</a>
           <a href="/#contato">Contato</a>

@@ -5,19 +5,23 @@ type CoverProps = {
   image: string | null;
   label: string;
   title: string;
+  variant: "book" | "movie";
 };
 
-export function Cover({ alt, image, label, title }: CoverProps) {
+export function Cover({ alt, image, label, title, variant }: CoverProps) {
   if (image) {
     return (
-      <div className="cover-frame">
+      <div className={`cover-frame cover-${variant}`}>
         <img src={image} alt={alt} />
       </div>
     );
   }
 
   return (
-    <div className="cover-frame cover-placeholder" aria-label={alt}>
+    <div
+      className={`cover-frame cover-placeholder cover-${variant}`}
+      aria-label={alt}
+    >
       <span>{label}</span>
       <strong>{title}</strong>
     </div>

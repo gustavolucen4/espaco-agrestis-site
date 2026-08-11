@@ -17,19 +17,23 @@ export default function ClubeDoLivroPage() {
       <SiteHeader />
 
       <section className="page-hero">
-        <a className="text-link" href="/">
-          Voltar para o início
-        </a>
-        <p className="eyebrow">Leitura compartilhada</p>
-        <h1>Clube do Livro</h1>
-        <p>
-          A página do Clube do Livro guarda as leituras feitas e planejadas,
-          com espaço para capa, autor, resumo e perguntas que ajudam o encontro
-          a render boas conversas.
-        </p>
+        <a className="back-link" href="/">← Início</a>
+        <div className="page-hero-copy">
+          <p className="eyebrow">Leitura compartilhada</p>
+          <h1>Clube do Livro</h1>
+          <p>Leituras que formam o olhar e abrem espaço para boas conversas.</p>
+        </div>
+        <div className="page-summary" aria-label="Resumo do acervo">
+          <strong>{books.length}</strong>
+          <span>livros registrados</span>
+        </div>
       </section>
 
-      <section className="section">
+      <section className="section catalog-section">
+        <div className="catalog-heading">
+          <div><p className="eyebrow">Nossa estante</p><h2>Leituras do clube</h2></div>
+          <p>Livros já escolhidos e possibilidades para os próximos encontros.</p>
+        </div>
         <div className="catalog-list">
           {books.map((book) => (
             <article className="catalog-item" key={book.title}>
@@ -38,16 +42,15 @@ export default function ClubeDoLivroPage() {
                 image={book.coverImage}
                 label="Livro"
                 title={book.title}
+                variant="book"
               />
-              <div className="catalog-copy">
-                <div>
-                  <p className="tag">{book.status}</p>
-                  <h2>{book.title}</h2>
-                  <p className="author">{book.author}</p>
-                </div>
-                <p>{book.description}</p>
-                <p>{book.discussion}</p>
+              <div className="catalog-item-heading">
+                <p className="tag">{book.status}</p>
+                <h3>{book.title}</h3>
+                <p className="author">{book.author}</p>
               </div>
+              <p className="catalog-description">{book.description}</p>
+              <div className="discussion-note"><span>Para conversar</span><p>{book.discussion}</p></div>
             </article>
           ))}
         </div>

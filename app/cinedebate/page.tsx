@@ -17,19 +17,23 @@ export default function CinedebatePage() {
       <SiteHeader />
 
       <section className="page-hero">
-        <a className="text-link" href="/">
-          Voltar para o início
-        </a>
-        <p className="eyebrow">Cinema e conversa</p>
-        <h1>Cinedebate</h1>
-        <p>
-          A página do Cinedebate reúne os filmes assistidos, suas capas, uma
-          breve descrição e alguns pontos que ajudam a guiar a conversa depois
-          da sessão.
-        </p>
+        <a className="back-link" href="/">← Início</a>
+        <div className="page-hero-copy">
+          <p className="eyebrow">Cinema e conversa</p>
+          <h1>Cinedebate</h1>
+          <p>Filmes que assistimos juntos e ideias que continuam depois da sessão.</p>
+        </div>
+        <div className="page-summary" aria-label="Resumo do acervo">
+          <strong>{watchedMovies.length}</strong>
+          <span>filmes registrados</span>
+        </div>
       </section>
 
-      <section className="section">
+      <section className="section catalog-section">
+        <div className="catalog-heading">
+          <div><p className="eyebrow">Nosso acervo</p><h2>Filmes assistidos</h2></div>
+          <p>Memória das sessões, temas e pontos que orientaram cada conversa.</p>
+        </div>
         <div className="catalog-list">
           {watchedMovies.map((movie) => (
             <article className="catalog-item" key={movie.title}>
@@ -38,18 +42,15 @@ export default function CinedebatePage() {
                 image={movie.coverImage}
                 label="Filme"
                 title={movie.title}
+                variant="movie"
               />
-              <div className="catalog-copy">
-                <div>
-                  <p className="tag">{movie.status}</p>
-                  <h2>{movie.title}</h2>
-                  <p className="author">
-                    {movie.year} · {movie.theme}
-                  </p>
-                </div>
-                <p>{movie.description}</p>
-                <p>{movie.discussion}</p>
+              <div className="catalog-item-heading">
+                <p className="tag">{movie.status}</p>
+                <h3>{movie.title}</h3>
+                <p className="author">{movie.year} · {movie.theme}</p>
               </div>
+              <p className="catalog-description">{movie.description}</p>
+              <div className="discussion-note"><span>Para conversar</span><p>{movie.discussion.replace("Pontos para conversar: ", "")}</p></div>
             </article>
           ))}
         </div>
