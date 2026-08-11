@@ -79,8 +79,10 @@ export const watchedMovies: Movie[] = [
     theme: "Talento e escolhas",
     year: "1997",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/genio-indomavel.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Gênio Indomável",
+    postUrl: "https://www.instagram.com/p/DNyCuMUWqRy/",
     description:
       "Um jovem de inteligência extraordinária precisa decidir se continuará protegido por suas defesas ou aceitará ajuda para construir o próprio caminho.",
     discussion:
@@ -92,8 +94,10 @@ export const watchedMovies: Movie[] = [
     theme: "Ambição e limites",
     year: "2014",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/whiplash.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Whiplash",
+    postUrl: "https://www.instagram.com/p/DPd-mobDa4S/",
     description:
       "A busca obsessiva pela excelência coloca um jovem músico diante dos limites entre disciplina, talento, abuso e sucesso.",
     discussion:
@@ -106,8 +110,10 @@ export const watchedMovies: Movie[] = [
     year: "1946",
     status: "Já assistido",
     favorite: true,
-    coverImage: null,
+    coverImage: "/covers/felicidade.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Felicidade Não Se Compra",
+    postUrl: "https://www.instagram.com/p/DRz5IznETiq/",
     description:
       "Ao atravessar sua noite mais difícil, um homem descobre o valor que sua presença, seus sacrifícios e suas amizades tiveram na vida de toda uma cidade.",
     discussion:
@@ -119,8 +125,10 @@ export const watchedMovies: Movie[] = [
     theme: "Escolhas e consequências",
     year: "2007",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/onde-fracos.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Onde os Fracos Não Têm Vez",
+    postUrl: "https://www.instagram.com/p/DTfhdKmDeM0/",
     description:
       "Uma decisão tomada diante de uma fortuna abandonada desencadeia uma perseguição marcada pela violência e pelas consequências do acaso.",
     discussion:
@@ -132,8 +140,10 @@ export const watchedMovies: Movie[] = [
     theme: "Família e coragem",
     year: "1996",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/preco-resgate.webp",
+    coverFormat: "post",
     coverAlt: "Capa do filme O Preço de um Resgate",
+    postUrl: "https://www.instagram.com/p/DU0urzPDVdf/",
     description:
       "O sequestro de uma criança leva seu pai a uma decisão extrema, colocando em tensão prudência, coragem e amor pela família.",
     discussion:
@@ -145,8 +155,10 @@ export const watchedMovies: Movie[] = [
     theme: "Honra e dever",
     year: "2000",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/gladiador.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Gladiador",
+    postUrl: "https://www.instagram.com/p/DXcIa51DU80/",
     description:
       "Um general traído transforma sua busca por justiça em uma luta por fidelidade, honra e liberdade diante do poder corrompido.",
     discussion:
@@ -158,8 +170,10 @@ export const watchedMovies: Movie[] = [
     theme: "Poder e vazio",
     year: "1941",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/cidadao-kane.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Cidadão Kane",
+    postUrl: "https://www.instagram.com/p/DYhpPWatYxI/",
     description:
       "A vida de um magnata da imprensa é reconstruída a partir de lembranças que revelam suas conquistas, perdas e contradições.",
     discussion:
@@ -234,7 +248,7 @@ export const books: Book[] = [
     status: "Próxima leitura",
     stage: "upcoming",
     meeting: "Data a confirmar",
-    coverImage: null,
+    coverImage: "/covers/as-duas-torres.jpg",
     coverAlt: "Capa do livro O Senhor dos Anéis: As Duas Torres",
     description:
       "A Sociedade segue dividida, enquanto cada grupo precisa permanecer fiel à missão diante de novos perigos e alianças.",
@@ -247,7 +261,7 @@ export const books: Book[] = [
     status: "Próxima leitura",
     stage: "upcoming",
     meeting: "Data a confirmar",
-    coverImage: null,
+    coverImage: "/covers/o-retorno-do-rei.jpg",
     coverAlt: "Capa do livro O Senhor dos Anéis: O Retorno do Rei",
     description:
       "A etapa final da jornada reúne sacrifício, esperança e perseverança quando a missão parece mais difícil de cumprir.",

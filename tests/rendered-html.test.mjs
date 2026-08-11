@@ -52,6 +52,8 @@ test("renders all Cinedebate sessions in viewing order", async () => {
   assert.ok(html.indexOf("Whiplash") < html.indexOf("Felicidade Não Se Compra"));
   assert.ok(html.indexOf("Felicidade Não Se Compra") < html.indexOf("Rocky Balboa"));
   assert.match(html, /Nosso favorito/);
+  assert.match(html, /\/covers\/genio-indomavel\.jpg/);
+  assert.match(html, /\/covers\/cidadao-kane\.jpg/);
   assert.match(html, /\/covers\/rocky-balboa\.jpg/);
   assert.match(html, /Ver publicação no Instagram/);
 });
@@ -67,6 +69,8 @@ test("renders books grouped by reading stage", async () => {
   assert.match(html, /O Hobbit/);
   assert.match(html, /As Duas Torres/);
   assert.match(html, /O Retorno do Rei/);
+  assert.match(html, /\/covers\/as-duas-torres\.jpg/);
+  assert.match(html, /\/covers\/o-retorno-do-rei\.jpg/);
   assert.match(html, /\/covers\/sociedade-do-anel\.webp/);
   assert.match(html, /22 de agosto de 2026, às 9h/);
 });
