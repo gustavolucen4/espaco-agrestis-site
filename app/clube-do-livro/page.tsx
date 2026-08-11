@@ -51,9 +51,9 @@ export default function ClubeDoLivroPage() {
                   <span>{stageBooks.length} {stageBooks.length === 1 ? "livro" : "livros"}</span>
                 </div>
                 <div className="catalog-list">
-                  {stageBooks.map((book) => (
+                  {stageBooks.map((book, index) => (
                     <article className="catalog-item" key={book.title}>
-                      <Cover alt={book.coverAlt} format={book.coverFormat} image={book.coverImage} label="Livro" title={book.title} variant="book" />
+                      <Cover alt={book.coverAlt} format={book.coverFormat} image={book.coverImage} label="Livro" priority={stage.key === "current" && index === 0} title={book.title} variant="book" />
                       <div className="catalog-item-heading">
                         <p className="tag">{book.status}</p>
                         <h3>{book.title}</h3>

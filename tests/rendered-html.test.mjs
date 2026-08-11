@@ -55,6 +55,9 @@ test("renders all Cinedebate sessions in viewing order", async () => {
   assert.match(html, /\/covers\/genio-indomavel\.jpg/);
   assert.match(html, /\/covers\/cidadao-kane\.jpg/);
   assert.match(html, /\/covers\/rocky-balboa\.jpg/);
+  assert.match(html, /loading="eager"/);
+  assert.match(html, /loading="lazy"/);
+  assert.match(html, /Ampliar capa do filme/);
   assert.match(html, /Ver publicação no Instagram/);
 });
 

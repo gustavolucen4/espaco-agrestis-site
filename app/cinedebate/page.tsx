@@ -36,13 +36,14 @@ export default function CinedebatePage() {
           <p>Na ordem em que assistimos, com os temas que orientaram cada conversa.</p>
         </div>
         <div className="catalog-list movie-catalog">
-          {watchedMovies.map((movie) => (
+          {watchedMovies.map((movie, index) => (
             <article className="catalog-item" key={movie.title}>
               <Cover
                 alt={movie.coverAlt}
                 format={movie.coverFormat}
                 image={movie.coverImage}
                 label="Filme"
+                priority={index === 0}
                 title={movie.title}
                 variant="movie"
               />
