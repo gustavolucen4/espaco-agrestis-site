@@ -51,7 +51,7 @@ export default function Home() {
             <div>
               <p className="next-event-type">Clube do Livro</p>
               <h2 id="next-title">A Sociedade do Anel</h2>
-              <p>Próximo encontro do clube, no Espaço Agrestis.</p>
+              <p>22 de agosto, às 9h · Pan Nossa</p>
             </div>
           </div>
           <a href="/clube-do-livro" className="text-link">Ver detalhes da leitura</a>
@@ -139,6 +139,7 @@ export default function Home() {
             <article className="media-card" key={movie.title}>
               <Cover
                 alt={movie.coverAlt}
+                format={movie.coverFormat}
                 image={movie.coverImage}
                 label="Filme"
                 title={movie.title}
@@ -177,6 +178,7 @@ export default function Home() {
             <article className="media-card" key={book.title}>
               <Cover
                 alt={book.coverAlt}
+                format={book.coverFormat}
                 image={book.coverImage}
                 label="Livro"
                 title={book.title}
@@ -227,14 +229,19 @@ export default function Home() {
         <div className="contact-actions">
           <a
             className="button primary"
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/espacoagrestis/"
             target="_blank"
             rel="noreferrer"
           >
             Instagram
           </a>
-          <a className="button secondary" href="#atividades">
-            Consultar agenda
+          <a
+            className="button secondary"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeRJ_FYKKayqfgkFrP_eLBgZi7YRhzSajehfOA8e4BTA36Myg/viewform"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Quero participar
           </a>
         </div>
       </section>

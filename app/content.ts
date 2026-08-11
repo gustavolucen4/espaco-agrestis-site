@@ -18,7 +18,9 @@ export type Movie = {
   status: string;
   favorite?: boolean;
   coverImage: string | null;
+  coverFormat?: "cover" | "post";
   coverAlt: string;
+  postUrl?: string;
   description: string;
   discussion: string;
 };
@@ -30,7 +32,9 @@ export type Book = {
   stage: "read" | "current" | "upcoming";
   meeting: string;
   coverImage: string | null;
+  coverFormat?: "cover" | "post";
   coverAlt: string;
+  postUrl?: string;
   description: string;
   discussion: string;
 };
@@ -39,10 +43,10 @@ export const upcomingActivities: Activity[] = [
   {
     type: "Clube do Livro",
     title: "O Senhor dos Anéis: A Sociedade do Anel",
-    date: "22 de agosto de 2026",
+    date: "22 de agosto de 2026, às 9h",
     dateDay: "22",
     dateMonth: "AGO",
-    place: "Espaço Agrestis",
+    place: "Pan Nossa · Caruaru, PE",
     detail:
       "Encontro para conversar sobre a primeira parte da jornada, a amizade entre os personagens e as escolhas feitas diante do perigo.",
     href: "/clube-do-livro",
@@ -167,8 +171,10 @@ export const watchedMovies: Movie[] = [
     theme: "Perdão e vocação",
     year: "2011",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/encontraras-dragoes.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Encontrarás Dragões",
+    postUrl: "https://www.instagram.com/espacoagrestis/p/DaSgI7hxbEq/",
     description:
       "Duas trajetórias atravessadas pela guerra e por escolhas opostas conduzem a uma reflexão sobre fé, ressentimento, perdão e santidade no cotidiano.",
     discussion:
@@ -180,8 +186,10 @@ export const watchedMovies: Movie[] = [
     theme: "Perseverança e recomeço",
     year: "2006",
     status: "Já assistido",
-    coverImage: null,
+    coverImage: "/covers/rocky-balboa.jpg",
+    coverFormat: "post",
     coverAlt: "Capa do filme Rocky Balboa",
+    postUrl: "https://www.instagram.com/espacoagrestis/p/DbUPwv2NvJW/",
     description:
       "Anos depois de deixar os ringues, Rocky encontra uma última oportunidade de enfrentar seus limites e dar sentido ao que ainda carrega por dentro.",
     discussion:
@@ -196,8 +204,10 @@ export const books: Book[] = [
     status: "Já lido",
     stage: "read",
     meeting: "Leitura concluída",
-    coverImage: null,
+    coverImage: "/covers/o-hobbit.webp",
+    coverFormat: "post",
     coverAlt: "Capa do livro O Hobbit",
+    postUrl: "https://www.instagram.com/espacoagrestis/p/DZwvjmsxLYg/",
     description:
       "A inesperada jornada de Bilbo Bolseiro para além do conforto do Condado, marcada por amizade, coragem e crescimento.",
     discussion:
@@ -208,9 +218,11 @@ export const books: Book[] = [
     author: "J. R. R. Tolkien",
     status: "Em leitura",
     stage: "current",
-    meeting: "Próximo encontro: 22 de agosto de 2026",
-    coverImage: null,
+    meeting: "Próximo encontro: 22 de agosto de 2026, às 9h",
+    coverImage: "/covers/sociedade-do-anel.webp",
+    coverFormat: "post",
     coverAlt: "Capa do livro O Senhor dos Anéis: A Sociedade do Anel",
+    postUrl: "https://www.instagram.com/espacoagrestis/p/DawbiSbtQtA/",
     description:
       "O início da grande jornada para destruir o Anel, reunindo personagens diferentes em torno de uma missão maior do que cada um deles.",
     discussion:

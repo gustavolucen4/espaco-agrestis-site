@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://espaco-agrestis.pages.dev"),
+  metadataBase: new URL("https://espaco-agrestis.gls4417963.chatgpt.site"),
   title: "Espaço Agrestis | Formação integral em Caruaru",
   description:
     "Espaço Cultural destinado à formação integral de homens, com recolhimentos, cinedebates e clube do livro em Caruaru.",

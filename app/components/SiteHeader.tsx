@@ -14,7 +14,8 @@ export function SiteHeader({ active = "home" }: SiteHeaderProps) {
         <span>Espaço Agrestis</span>
       </a>
       <nav aria-label="Navegação principal">
-        <a href="/#atividades" aria-current={active === "home" ? "page" : undefined}>Agenda</a>
+        <a href="/" aria-current={active === "home" ? "page" : undefined}>Início</a>
+        <a href="/#atividades">Agenda</a>
         <a href="/cinedebate" aria-current={active === "cinedebate" ? "page" : undefined}>Cinedebate</a>
         <a href="/clube-do-livro" aria-current={active === "livros" ? "page" : undefined}>Livros</a>
         <a href="/#contato">Contato</a>

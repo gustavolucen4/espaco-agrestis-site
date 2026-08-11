@@ -35,11 +35,12 @@ export default function CinedebatePage() {
           <div><p className="eyebrow">Nosso acervo</p><h2>Filmes assistidos</h2></div>
           <p>Na ordem em que assistimos, com os temas que orientaram cada conversa.</p>
         </div>
-        <div className="catalog-list">
+        <div className="catalog-list movie-catalog">
           {watchedMovies.map((movie) => (
             <article className="catalog-item" key={movie.title}>
               <Cover
                 alt={movie.coverAlt}
+                format={movie.coverFormat}
                 image={movie.coverImage}
                 label="Filme"
                 title={movie.title}
@@ -54,6 +55,11 @@ export default function CinedebatePage() {
                 <p className="author">{movie.year} · {movie.theme}</p>
               </div>
               <p className="catalog-description">{movie.description}</p>
+              {movie.postUrl ? (
+                <a className="post-link" href={movie.postUrl} target="_blank" rel="noreferrer">
+                  Ver publicação no Instagram
+                </a>
+              ) : null}
               <details className="discussion-note">
                 <summary>Para conversar</summary>
                 <p>{movie.discussion}</p>

@@ -53,7 +53,7 @@ export default function ClubeDoLivroPage() {
                 <div className="catalog-list">
                   {stageBooks.map((book) => (
                     <article className="catalog-item" key={book.title}>
-                      <Cover alt={book.coverAlt} image={book.coverImage} label="Livro" title={book.title} variant="book" />
+                      <Cover alt={book.coverAlt} format={book.coverFormat} image={book.coverImage} label="Livro" title={book.title} variant="book" />
                       <div className="catalog-item-heading">
                         <p className="tag">{book.status}</p>
                         <h3>{book.title}</h3>
@@ -61,6 +61,7 @@ export default function ClubeDoLivroPage() {
                         <p className="meeting-label">{book.meeting}</p>
                       </div>
                       <p className="catalog-description">{book.description}</p>
+                      {book.postUrl ? <a className="post-link" href={book.postUrl} target="_blank" rel="noreferrer">Ver publicação no Instagram</a> : null}
                       <details className="discussion-note"><summary>Para conversar</summary><p>{book.discussion}</p></details>
                     </article>
                   ))}
@@ -72,7 +73,7 @@ export default function ClubeDoLivroPage() {
       </section>
 
       <section className="page-cta">
-        <div><p className="eyebrow">Próximo encontro</p><h2>22 de agosto de 2026</h2><p>Conversa sobre A Sociedade do Anel, de J. R. R. Tolkien.</p></div>
+        <div><p className="eyebrow">Próximo encontro</p><h2>22 de agosto, às 9h</h2><p>A Sociedade do Anel · Pan Nossa, Av. Maj. Manoel de Freitas, 31.</p></div>
         <a className="button primary" href="/#atividades">Ver agenda</a>
       </section>
       <SiteFooter />

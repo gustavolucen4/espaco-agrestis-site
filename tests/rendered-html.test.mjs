@@ -38,6 +38,8 @@ test("renders the Espaço Agrestis home with the current agenda", async () => {
   assert.match(html, /Próximas atividades/);
   assert.match(html, /Felicidade Não Se Compra/);
   assert.match(html, /Rocky Balboa/);
+  assert.match(html, /instagram\.com\/espacoagrestis/);
+  assert.match(html, /Pan Nossa/);
   assert.doesNotMatch(html, /Building your site|No MVP/);
 });
 
@@ -50,6 +52,8 @@ test("renders all Cinedebate sessions in viewing order", async () => {
   assert.ok(html.indexOf("Whiplash") < html.indexOf("Felicidade Não Se Compra"));
   assert.ok(html.indexOf("Felicidade Não Se Compra") < html.indexOf("Rocky Balboa"));
   assert.match(html, /Nosso favorito/);
+  assert.match(html, /\/covers\/rocky-balboa\.jpg/);
+  assert.match(html, /Ver publicação no Instagram/);
 });
 
 test("renders books grouped by reading stage", async () => {
@@ -63,4 +67,6 @@ test("renders books grouped by reading stage", async () => {
   assert.match(html, /O Hobbit/);
   assert.match(html, /As Duas Torres/);
   assert.match(html, /O Retorno do Rei/);
+  assert.match(html, /\/covers\/sociedade-do-anel\.webp/);
+  assert.match(html, /22 de agosto de 2026, às 9h/);
 });

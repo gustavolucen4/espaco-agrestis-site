@@ -3,15 +3,16 @@
 type CoverProps = {
   alt: string;
   image: string | null;
+  format?: "cover" | "post";
   label: string;
   title: string;
   variant: "book" | "movie";
 };
 
-export function Cover({ alt, image, label, title, variant }: CoverProps) {
+export function Cover({ alt, format = "cover", image, label, title, variant }: CoverProps) {
   if (image) {
     return (
-      <div className={`cover-frame cover-${variant}`}>
+      <div className={`cover-frame cover-${variant} cover-format-${format}`}>
         <img src={image} alt={alt} />
       </div>
     );
