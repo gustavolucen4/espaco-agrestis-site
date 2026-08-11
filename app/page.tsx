@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 
 const upcomingActivities = [
   {
@@ -84,7 +84,7 @@ export default function Home() {
       <header className="site-header" aria-label="Cabecalho do site">
         <a className="brand" href="#inicio" aria-label="Espaço Agrestis">
           <span className="brand-mark">
-            <Image src="/logo-agrestis.jpg" alt="" width={72} height={72} />
+            <img src="/logo-agrestis.jpg" alt="" />
           </span>
           <span>Espaço Agrestis</span>
         </a>
@@ -98,13 +98,10 @@ export default function Home() {
 
       <section id="inicio" className="hero-section">
         <div className="hero-copy">
-          <Image
+          <img
             className="hero-logo"
             src="/logo-agrestis.jpg"
             alt="Brasão do Espaço Cultural Agrestis"
-            width={192}
-            height={192}
-            priority
           />
           <p className="eyebrow">Comunidade católica em Caruaru</p>
           <h1>Espaço Agrestis</h1>
