@@ -5,8 +5,8 @@ import { SiteHeader } from "./components/SiteHeader";
 import { books, pillars, upcomingActivities, watchedMovies } from "./content";
 
 export default function Home() {
-  const featuredMovies = watchedMovies.slice(0, 3);
-  const featuredBooks = books.slice(0, 3);
+  const featuredMovies = watchedMovies.slice(0, 2);
+  const featuredBooks = books.slice(0, 2);
 
   return (
     <main>
@@ -106,7 +106,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="cinedebate" className="section muted">
+      <section id="cinedebate" className="section muted preview-section">
         <div className="section-heading split-heading">
           <div>
             <p className="eyebrow">Cinema e conversa</p>
@@ -120,7 +120,7 @@ export default function Home() {
             Ver página do Cinedebate
           </a>
         </div>
-        <div className="cover-grid">
+        <div className="cover-grid preview-grid">
           {featuredMovies.map((movie) => (
             <article className="media-card" key={movie.title}>
               <Cover
@@ -139,7 +139,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="livros" className="section">
+      <section id="livros" className="section preview-section">
         <div className="section-heading split-heading">
           <div>
             <p className="eyebrow">Leitura compartilhada</p>
@@ -153,7 +153,7 @@ export default function Home() {
             Ver página do Clube
           </a>
         </div>
-        <div className="cover-grid">
+        <div className="cover-grid preview-grid">
           {featuredBooks.map((book) => (
             <article className="media-card" key={book.title}>
               <Cover
