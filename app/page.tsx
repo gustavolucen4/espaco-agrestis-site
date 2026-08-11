@@ -1,28 +1,26 @@
-/* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
-
 import { Cover } from "./components/Cover";
+import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { books, pillars, upcomingActivities, watchedMovies } from "./content";
 
 export default function Home() {
-  const featuredMovies = watchedMovies.slice(0, 2);
-  const featuredBooks = books.slice(0, 2);
+  const favoriteMovie = watchedMovies.find((movie) => movie.favorite);
+  const latestMovie = watchedMovies.at(-1);
+  const featuredMovies = [favoriteMovie, latestMovie].filter(
+    (movie): movie is (typeof watchedMovies)[number] => Boolean(movie),
+  );
+  const featuredBooks = books.filter((book) => book.stage !== "upcoming");
 
   return (
     <main>
-      <SiteHeader />
+      <SiteHeader active="home" />
 
       <section id="inicio" className="hero-section">
         <div className="hero-copy">
           <div className="hero-identity">
-            <img
-              className="hero-logo"
-              src="/logo-agrestis.jpg"
-              alt="Brasão do Espaço Cultural Agrestis"
-            />
             <div>
               <p className="eyebrow">Espaço Cultural</p>
-              <p>Caruaru, Pernambuco</p>
+              <p>Opus Dei em Caruaru, Pernambuco</p>
             </div>
           </div>
           <h1>Espaço Agrestis</h1>
@@ -43,19 +41,29 @@ export default function Home() {
         <aside className="next-card" aria-labelledby="next-title">
           <div className="next-card-top">
             <span className="card-label">Próxima atividade</span>
-            <span className="status-dot">Data a confirmar</span>
+            <span className="status-dot">22 de agosto</span>
           </div>
-          <div>
-            <h2 id="next-title">Recolhimento mensal</h2>
-            <p>Oração, meditação e formação com sacerdote em Caruaru.</p>
+          <div className="next-event-main">
+            <time className="date-badge" dateTime="2026-08-22">
+              <strong>22</strong>
+              <span>AGO</span>
+            </time>
+            <div>
+              <p className="next-event-type">Clube do Livro</p>
+              <h2 id="next-title">A Sociedade do Anel</h2>
+              <p>Próximo encontro do clube, no Espaço Agrestis.</p>
+            </div>
           </div>
-          <a href="#recolhimento" className="text-link">Conhecer o recolhimento</a>
+          <a href="/clube-do-livro" className="text-link">Ver detalhes da leitura</a>
         </aside>
       </section>
 
       <section className="intro-band" aria-label="Pilares do Espaço Agrestis">
         {pillars.map((pillar) => (
-          <p key={pillar}>{pillar}</p>
+          <div key={pillar.number}>
+            <span>{pillar.number}</span>
+            <p><strong>{pillar.title}</strong>{pillar.detail}</p>
+          </div>
         ))}
       </section>
 
@@ -64,29 +72,31 @@ export default function Home() {
           <p className="eyebrow">Agenda centralizada</p>
           <h2>Próximas atividades</h2>
           <p>
-            Esta área pode virar o ponto principal para consultar datas,
-            horários, locais e orientações de cada encontro.
+            Datas, locais e informações dos próximos encontros do Espaço
+            Agrestis, reunidos em um só lugar.
           </p>
         </div>
         <div className="activity-grid">
           {upcomingActivities.map((activity) => (
-            <article className="activity-card" key={activity.type}>
-              <span>{activity.type}</span>
-              <h3>{activity.title}</h3>
-              <dl>
-                <div>
-                  <dt>Data</dt>
-                  <dd>{activity.date}</dd>
-                </div>
-                <div>
-                  <dt>Local</dt>
-                  <dd>{activity.place}</dd>
-                </div>
-              </dl>
-              <p>{activity.detail}</p>
-              <a className="text-link" href={activity.href}>
-                Ver atividade
-              </a>
+            <article
+              className={`activity-card${activity.featured ? " featured" : ""}`}
+              key={activity.type}
+            >
+              {activity.featured && activity.dateDay ? (
+                <time className="activity-date" dateTime="2026-08-22">
+                  <strong>{activity.dateDay}</strong><span>{activity.dateMonth}</span>
+                </time>
+              ) : null}
+              <div className="activity-content">
+                <span>{activity.type}</span>
+                <h3>{activity.title}</h3>
+                <dl>
+                  <div><dt>Data</dt><dd>{activity.date}</dd></div>
+                  <div><dt>Local</dt><dd>{activity.place}</dd></div>
+                </dl>
+                <p>{activity.detail}</p>
+                <a className="text-link" href={activity.href}>Ver atividade</a>
+              </div>
             </article>
           ))}
         </div>
@@ -103,8 +113,8 @@ export default function Home() {
             meditação, examinar a própria vida e recomeçar com serenidade.
           </p>
           <p>
-            No MVP, esta seção fica preparada para receber tema, data, horário,
-            local e avisos práticos assim que a próxima edição for confirmada.
+            A próxima data será divulgada em breve. Os encontros acontecem em
+            Caruaru e contam com a presença de um sacerdote.
           </p>
         </div>
       </section>
@@ -135,7 +145,10 @@ export default function Home() {
                 variant="movie"
               />
               <div>
-                <p className="tag">{movie.theme}</p>
+                <div className="media-meta">
+                  <p className="tag">Sessão {String(movie.order).padStart(2, "0")}</p>
+                  {movie.favorite ? <span className="favorite-badge">Favorito</span> : null}
+                </div>
                 <h3>{movie.title}</h3>
                 <p>{movie.description}</p>
               </div>
@@ -151,8 +164,8 @@ export default function Home() {
             <p className="eyebrow">Leitura compartilhada</p>
             <h2>Clube do livro</h2>
             <p>
-              Encontros bimestrais para conversar sobre livros que formam a
-              inteligência, a sensibilidade e a vida cristã.
+              Leituras compartilhadas para formar o olhar, cultivar a amizade
+              e alimentar conversas que continuam depois do encontro.
             </p>
           </div>
           <a className="button secondary" href="/clube-do-livro">
@@ -181,8 +194,10 @@ export default function Home() {
       </section>
 
       <section id="sobre" className="about-section">
-        <div className="about-image" aria-hidden="true">
-          <span>Caruaru</span>
+        <div className="about-visual" aria-hidden="true">
+          <span className="about-number">03</span>
+          <div><strong>Formar</strong><strong>Conviver</strong><strong>Servir</strong></div>
+          <p>Caruaru · PE</p>
         </div>
         <div>
           <p className="eyebrow">Sobre o espaço</p>
@@ -193,8 +208,9 @@ export default function Home() {
             meio do mundo, com especial carinho pela vida cotidiana.
           </p>
           <p>
-            A primeira versão do site nasce para organizar o que já acontece e
-            facilitar a comunicação das próximas atividades em Caruaru.
+            Recolhimentos, cinema e literatura criam ocasiões para aprofundar
+            a fé, ampliar o repertório e viver melhor as responsabilidades de
+            cada dia.
           </p>
         </div>
       </section>
@@ -217,19 +233,13 @@ export default function Home() {
           >
             Instagram
           </a>
-          <a className="button secondary" href="mailto:contato@espacoagrestis.org">
-            Enviar mensagem
+          <a className="button secondary" href="#atividades">
+            Consultar agenda
           </a>
         </div>
       </section>
 
-      <footer className="site-footer">
-        <a className="brand" href="/">
-          <span className="brand-mark"><img src="/logo-agrestis.jpg" alt="" /></span>
-          <span>Espaço Agrestis</span>
-        </a>
-        <p>Espaço Cultural em Caruaru, Pernambuco.</p>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

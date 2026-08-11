@@ -1,8 +1,57 @@
-export const upcomingActivities = [
+export type Activity = {
+  type: string;
+  title: string;
+  date: string;
+  dateDay?: string;
+  dateMonth?: string;
+  place: string;
+  detail: string;
+  href: string;
+  featured?: boolean;
+};
+
+export type Movie = {
+  order: number;
+  title: string;
+  theme: string;
+  year: string;
+  status: string;
+  favorite?: boolean;
+  coverImage: string | null;
+  coverAlt: string;
+  description: string;
+  discussion: string;
+};
+
+export type Book = {
+  title: string;
+  author: string;
+  status: string;
+  stage: "read" | "current" | "upcoming";
+  meeting: string;
+  coverImage: string | null;
+  coverAlt: string;
+  description: string;
+  discussion: string;
+};
+
+export const upcomingActivities: Activity[] = [
+  {
+    type: "Clube do Livro",
+    title: "O Senhor dos Anéis: A Sociedade do Anel",
+    date: "22 de agosto de 2026",
+    dateDay: "22",
+    dateMonth: "AGO",
+    place: "Espaço Agrestis",
+    detail:
+      "Encontro para conversar sobre a primeira parte da jornada, a amizade entre os personagens e as escolhas feitas diante do perigo.",
+    href: "/clube-do-livro",
+    featured: true,
+  },
   {
     type: "Recolhimento mensal",
     title: "Manhã de recolhimento com sacerdote",
-    date: "Próxima data a confirmar",
+    date: "Nova data em breve",
     place: "Caruaru, PE",
     detail:
       "Tempo de oração, formação e silêncio para renovar a vida interior no cotidiano.",
@@ -11,100 +60,192 @@ export const upcomingActivities = [
   {
     type: "Cinedebate",
     title: "Sessão e conversa sobre cinema",
-    date: "Próxima sessão em definição",
+    date: "Nova sessão em breve",
     place: "Espaço Agrestis",
     detail:
       "Um filme escolhido em comunidade, seguido de conversa sobre personagens, virtudes e escolhas concretas.",
     href: "/cinedebate",
   },
-  {
-    type: "Clube do livro",
-    title: "Encontro bimestral de leitura",
-    date: "Próximo livro a divulgar",
-    place: "Caruaru, PE",
-    detail:
-      "Leituras compartilhadas para formar critério, amizade e desejo de santificar a vida ordinária.",
-    href: "/clube-do-livro",
-  },
 ];
 
-export const watchedMovies = [
+export const watchedMovies: Movie[] = [
   {
-    title: "A Vida é Bela",
-    theme: "Esperança e sacrifício",
+    order: 1,
+    title: "Gênio Indomável",
+    theme: "Talento e escolhas",
     year: "1997",
     status: "Já assistido",
     coverImage: null,
-    coverAlt: "Capa do filme A Vida é Bela",
+    coverAlt: "Capa do filme Gênio Indomável",
     description:
-      "Uma história sobre amor, imaginação e coragem diante do sofrimento, que abre conversa sobre paternidade, dignidade e sentido.",
+      "Um jovem de inteligência extraordinária precisa decidir se continuará protegido por suas defesas ou aceitará ajuda para construir o próprio caminho.",
     discussion:
-      "Pontos para conversar: como preservar a esperança, o valor do sacrifício por amor e a força da alegria em meio às dificuldades.",
+      "Amizade verdadeira, medo de mudar, responsabilidade pelos próprios dons e abertura para receber ajuda.",
   },
   {
-    title: "O Homem que Não Vendeu sua Alma",
-    theme: "Consciência e fidelidade",
-    year: "1966",
+    order: 2,
+    title: "Whiplash",
+    theme: "Ambição e limites",
+    year: "2014",
     status: "Já assistido",
     coverImage: null,
-    coverAlt: "Capa do filme O Homem que Não Vendeu sua Alma",
+    coverAlt: "Capa do filme Whiplash",
     description:
-      "Um convite a discutir verdade, liberdade interior e a firmeza de quem procura agir com retidão.",
+      "A busca obsessiva pela excelência coloca um jovem músico diante dos limites entre disciplina, talento, abuso e sucesso.",
     discussion:
-      "Pontos para conversar: consciência bem formada, fidelidade nas decisões difíceis e coragem diante da pressão externa.",
+      "O preço da excelência, autoridade, obsessão por resultados e o equilíbrio entre vocação e vida pessoal.",
   },
   {
-    title: "A Festa de Babette",
-    theme: "Generosidade e beleza",
-    year: "1987",
+    order: 3,
+    title: "Felicidade Não Se Compra",
+    theme: "Esperança e comunidade",
+    year: "1946",
+    status: "Já assistido",
+    favorite: true,
+    coverImage: null,
+    coverAlt: "Capa do filme Felicidade Não Se Compra",
+    description:
+      "Ao atravessar sua noite mais difícil, um homem descobre o valor que sua presença, seus sacrifícios e suas amizades tiveram na vida de toda uma cidade.",
+    discussion:
+      "O valor de uma vida comum, esperança nas crises, serviço aos outros e a riqueza construída pelas amizades.",
+  },
+  {
+    order: 4,
+    title: "Onde os Fracos Não Têm Vez",
+    theme: "Escolhas e consequências",
+    year: "2007",
     status: "Já assistido",
     coverImage: null,
-    coverAlt: "Capa do filme A Festa de Babette",
+    coverAlt: "Capa do filme Onde os Fracos Não Têm Vez",
     description:
-      "Um filme para conversar sobre gratuidade, comunidade, reconciliação e a beleza que nasce do serviço bem feito.",
+      "Uma decisão tomada diante de uma fortuna abandonada desencadeia uma perseguição marcada pela violência e pelas consequências do acaso.",
     discussion:
-      "Pontos para conversar: gratuidade, beleza, serviço silencioso e como a generosidade pode reconciliar pessoas.",
+      "Responsabilidade moral, ganância, presença do mal e as consequências imprevisíveis de uma escolha.",
+  },
+  {
+    order: 5,
+    title: "O Preço de um Resgate",
+    theme: "Família e coragem",
+    year: "1996",
+    status: "Já assistido",
+    coverImage: null,
+    coverAlt: "Capa do filme O Preço de um Resgate",
+    description:
+      "O sequestro de uma criança leva seu pai a uma decisão extrema, colocando em tensão prudência, coragem e amor pela família.",
+    discussion:
+      "Decisões sob pressão, limites da negociação, proteção da família e diferença entre coragem e imprudência.",
+  },
+  {
+    order: 6,
+    title: "Gladiador",
+    theme: "Honra e dever",
+    year: "2000",
+    status: "Já assistido",
+    coverImage: null,
+    coverAlt: "Capa do filme Gladiador",
+    description:
+      "Um general traído transforma sua busca por justiça em uma luta por fidelidade, honra e liberdade diante do poder corrompido.",
+    discussion:
+      "Liderança, lealdade, justiça, desejo de vingança e permanência dos valores em situações extremas.",
+  },
+  {
+    order: 7,
+    title: "Cidadão Kane",
+    theme: "Poder e vazio",
+    year: "1941",
+    status: "Já assistido",
+    coverImage: null,
+    coverAlt: "Capa do filme Cidadão Kane",
+    description:
+      "A vida de um magnata da imprensa é reconstruída a partir de lembranças que revelam suas conquistas, perdas e contradições.",
+    discussion:
+      "Ambição, poder, solidão, memória e aquilo que realmente permanece quando o sucesso exterior termina.",
+  },
+  {
+    order: 8,
+    title: "Encontrarás Dragões",
+    theme: "Perdão e vocação",
+    year: "2011",
+    status: "Já assistido",
+    coverImage: null,
+    coverAlt: "Capa do filme Encontrarás Dragões",
+    description:
+      "Duas trajetórias atravessadas pela guerra e por escolhas opostas conduzem a uma reflexão sobre fé, ressentimento, perdão e santidade no cotidiano.",
+    discussion:
+      "Liberdade interior, vocação, reconciliação, fé em tempos difíceis e as pequenas escolhas que formam uma vida.",
+  },
+  {
+    order: 9,
+    title: "Rocky Balboa",
+    theme: "Perseverança e recomeço",
+    year: "2006",
+    status: "Já assistido",
+    coverImage: null,
+    coverAlt: "Capa do filme Rocky Balboa",
+    description:
+      "Anos depois de deixar os ringues, Rocky encontra uma última oportunidade de enfrentar seus limites e dar sentido ao que ainda carrega por dentro.",
+    discussion:
+      "Maturidade, luto, perseverança, dignidade diante da derrota e coragem para recomeçar.",
   },
 ];
 
-export const books = [
+export const books: Book[] = [
   {
-    title: "Caminho",
-    author: "São Josemaria Escrivá",
-    status: "Leitura sugerida",
+    title: "O Hobbit",
+    author: "J. R. R. Tolkien",
+    status: "Já lido",
+    stage: "read",
+    meeting: "Leitura concluída",
     coverImage: null,
-    coverAlt: "Capa do livro Caminho",
+    coverAlt: "Capa do livro O Hobbit",
     description:
-      "Pontos breves para meditação pessoal sobre trabalho, oração, amizade, caridade e vida de fé.",
+      "A inesperada jornada de Bilbo Bolseiro para além do conforto do Condado, marcada por amizade, coragem e crescimento.",
     discussion:
-      "Bom para encontros com trechos curtos, partilha pessoal e aplicações concretas na vida cotidiana.",
+      "Coragem adquirida no caminho, apego ao conforto, amizade e transformação pessoal diante das dificuldades.",
   },
   {
-    title: "O Pequeno Príncipe",
-    author: "Antoine de Saint-Exupéry",
-    status: "Para debate",
+    title: "O Senhor dos Anéis: A Sociedade do Anel",
+    author: "J. R. R. Tolkien",
+    status: "Em leitura",
+    stage: "current",
+    meeting: "Próximo encontro: 22 de agosto de 2026",
     coverImage: null,
-    coverAlt: "Capa do livro O Pequeno Príncipe",
+    coverAlt: "Capa do livro O Senhor dos Anéis: A Sociedade do Anel",
     description:
-      "Uma leitura simples e profunda para conversar sobre amizade, responsabilidade e aquilo que educa o olhar.",
+      "O início da grande jornada para destruir o Anel, reunindo personagens diferentes em torno de uma missão maior do que cada um deles.",
     discussion:
-      "Bom para discutir amizade, cuidado, responsabilidade e a diferença entre ver muito e enxergar bem.",
+      "Amizade, responsabilidade, tentação do poder, esperança e fidelidade à missão mesmo sem conhecer todo o caminho.",
   },
   {
-    title: "A Abolição do Homem",
-    author: "C. S. Lewis",
-    status: "Próxima possibilidade",
+    title: "O Senhor dos Anéis: As Duas Torres",
+    author: "J. R. R. Tolkien",
+    status: "Próxima leitura",
+    stage: "upcoming",
+    meeting: "Data a confirmar",
     coverImage: null,
-    coverAlt: "Capa do livro A Abolição do Homem",
+    coverAlt: "Capa do livro O Senhor dos Anéis: As Duas Torres",
     description:
-      "Ensaio para discutir educação, virtude, formação moral e a importância de bons critérios.",
+      "A Sociedade segue dividida, enquanto cada grupo precisa permanecer fiel à missão diante de novos perigos e alianças.",
     discussion:
-      "Bom para encontros mais formativos, com foco em educação, consciência moral e linguagem das virtudes.",
+      "Fidelidade na distância, liderança, esperança em cenários adversos e responsabilidade quando os planos mudam.",
+  },
+  {
+    title: "O Senhor dos Anéis: O Retorno do Rei",
+    author: "J. R. R. Tolkien",
+    status: "Próxima leitura",
+    stage: "upcoming",
+    meeting: "Data a confirmar",
+    coverImage: null,
+    coverAlt: "Capa do livro O Senhor dos Anéis: O Retorno do Rei",
+    description:
+      "A etapa final da jornada reúne sacrifício, esperança e perseverança quando a missão parece mais difícil de cumprir.",
+    discussion:
+      "Serviço, realeza, sacrifício, amizade perseverante e a força das pequenas ações diante de grandes desafios.",
   },
 ];
 
 export const pillars = [
-  "Formação cristã para a vida diária",
-  "Amizade, cultura e conversa boa",
-  "Oração, estudo e serviço em Caruaru",
+  { number: "01", title: "Formação", detail: "Vida cristã no cotidiano" },
+  { number: "02", title: "Cultura", detail: "Leitura, cinema e conversa" },
+  { number: "03", title: "Amizade", detail: "Encontros e serviço em Caruaru" },
 ];

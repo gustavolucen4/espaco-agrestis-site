@@ -2,6 +2,7 @@
 
 import type { Metadata } from "next";
 import { Cover } from "../components/Cover";
+import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { watchedMovies } from "../content";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function CinedebatePage() {
   return (
     <main>
-      <SiteHeader />
+      <SiteHeader active="cinedebate" />
 
       <section className="page-hero">
         <a className="back-link" href="/">← Início</a>
@@ -25,14 +26,14 @@ export default function CinedebatePage() {
         </div>
         <div className="page-summary" aria-label="Resumo do acervo">
           <strong>{watchedMovies.length}</strong>
-          <span>filmes registrados</span>
+          <span>sessões registradas</span>
         </div>
       </section>
 
       <section className="section catalog-section">
         <div className="catalog-heading">
           <div><p className="eyebrow">Nosso acervo</p><h2>Filmes assistidos</h2></div>
-          <p>Memória das sessões, temas e pontos que orientaram cada conversa.</p>
+          <p>Na ordem em que assistimos, com os temas que orientaram cada conversa.</p>
         </div>
         <div className="catalog-list">
           {watchedMovies.map((movie) => (
@@ -45,16 +46,28 @@ export default function CinedebatePage() {
                 variant="movie"
               />
               <div className="catalog-item-heading">
-                <p className="tag">{movie.status}</p>
+                <div className="catalog-meta">
+                  <p className="tag">Sessão {String(movie.order).padStart(2, "0")}</p>
+                  {movie.favorite ? <span className="favorite-badge">Nosso favorito</span> : null}
+                </div>
                 <h3>{movie.title}</h3>
                 <p className="author">{movie.year} · {movie.theme}</p>
               </div>
               <p className="catalog-description">{movie.description}</p>
-              <div className="discussion-note"><span>Para conversar</span><p>{movie.discussion.replace("Pontos para conversar: ", "")}</p></div>
+              <details className="discussion-note">
+                <summary>Para conversar</summary>
+                <p>{movie.discussion}</p>
+              </details>
             </article>
           ))}
         </div>
       </section>
+
+      <section className="page-cta">
+        <div><p className="eyebrow">Próxima sessão</p><h2>Um novo filme em breve</h2><p>A próxima escolha e a data serão divulgadas na agenda.</p></div>
+        <a className="button primary" href="/#atividades">Ver agenda</a>
+      </section>
+      <SiteFooter />
     </main>
   );
 }
