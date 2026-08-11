@@ -14,12 +14,17 @@ export default function Home() {
 
       <section id="inicio" className="hero-section">
         <div className="hero-copy">
-          <img
-            className="hero-logo"
-            src="/logo-agrestis.jpg"
-            alt="Brasão do Espaço Cultural Agrestis"
-          />
-          <p className="eyebrow">Comunidade católica em Caruaru</p>
+          <div className="hero-identity">
+            <img
+              className="hero-logo"
+              src="/logo-agrestis.jpg"
+              alt="Brasão do Espaço Cultural Agrestis"
+            />
+            <div>
+              <p className="eyebrow">Comunidade católica</p>
+              <p>Caruaru, Pernambuco</p>
+            </div>
+          </div>
           <h1>Espaço Agrestis</h1>
           <p className="hero-text">
             Um lugar para reunir recolhimentos, cinedebates, leituras e

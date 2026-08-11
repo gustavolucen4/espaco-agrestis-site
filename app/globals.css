@@ -73,11 +73,11 @@ main {
 
 .brand-mark {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   overflow: hidden;
   border: 1px solid rgba(84, 99, 60, 0.28);
-  border-radius: 8px;
+  border-radius: 7px;
   background: #eadab6;
 }
 
@@ -85,7 +85,8 @@ main {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 2px;
 }
 
 nav {
@@ -120,13 +121,39 @@ nav a {
   gap: 12px;
 }
 
-.hero-logo {
-  width: 64px;
-  height: 64px;
-  border: 1px solid rgba(84, 99, 60, 0.22);
+.hero-identity {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(84, 99, 60, 0.16);
   border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 14px 34px rgba(38, 35, 31, 0.12);
+  padding: 8px 10px 8px 8px;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 10px 28px rgba(38, 35, 31, 0.08);
+}
+
+.hero-identity p {
+  margin-bottom: 0;
+}
+
+.hero-identity p:not(.eyebrow) {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-logo {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(84, 99, 60, 0.22);
+  border-radius: 7px;
+  background: #eadab6;
+  object-fit: contain;
+  padding: 3px;
 }
 
 .eyebrow,
@@ -593,8 +620,8 @@ dd {
   }
 
   .brand-mark {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
 
   nav {
@@ -615,9 +642,19 @@ dd {
     gap: 18px;
   }
 
+  .hero-identity {
+    gap: 12px;
+    padding: 10px 14px 10px 10px;
+  }
+
+  .hero-identity p:not(.eyebrow) {
+    font-size: 0.98rem;
+  }
+
   .hero-logo {
-    width: 96px;
-    height: 96px;
+    width: 58px;
+    height: 58px;
+    padding: 4px;
   }
 
   .eyebrow,
