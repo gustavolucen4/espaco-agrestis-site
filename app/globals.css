@@ -148,15 +148,15 @@ p {
 h1 {
   max-width: 760px;
   margin-bottom: 0;
-  font-size: clamp(2.85rem, 16vw, 6.4rem);
-  line-height: 0.92;
+  font-size: clamp(2.45rem, 13vw, 6.4rem);
+  line-height: 0.98;
   letter-spacing: 0;
 }
 
 h2 {
   margin-bottom: 0;
-  font-size: clamp(1.7rem, 7.4vw, 3.35rem);
-  line-height: 1.05;
+  font-size: clamp(1.55rem, 6.2vw, 3.35rem);
+  line-height: 1.08;
   letter-spacing: 0;
 }
 
@@ -369,11 +369,11 @@ dd {
 }
 
 .muted {
-  width: 100%;
-  max-width: none;
-  padding-right: max(16px, calc((100% - 1120px) / 2));
-  padding-left: max(16px, calc((100% - 1120px) / 2));
-  background: #f0eee8;
+  background:
+    linear-gradient(180deg, rgba(240, 238, 232, 0.92), rgba(240, 238, 232, 0.92));
+  box-shadow:
+    -16px 0 0 #f0eee8,
+    16px 0 0 #f0eee8;
 }
 
 .timeline {
@@ -404,10 +404,10 @@ dd {
 
 .media-card {
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr);
-  gap: 14px;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
   align-items: start;
-  padding: 14px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.78);
@@ -417,6 +417,7 @@ dd {
 .media-card p {
   margin-bottom: 0;
   color: var(--muted);
+  font-size: 0.92rem;
   line-height: 1.58;
 }
 
@@ -445,7 +446,7 @@ dd {
 
 .cover-placeholder {
   gap: 10px;
-  padding: 14px;
+  padding: 10px;
   background:
     linear-gradient(145deg, rgba(84, 99, 60, 0.12), rgba(125, 46, 58, 0.12)),
     #efe3c8;
@@ -455,14 +456,14 @@ dd {
 
 .cover-placeholder span {
   color: var(--wine);
-  font-size: 0.7rem;
+  font-size: 0.64rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .cover-placeholder strong {
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   line-height: 1.12;
 }
 
@@ -494,9 +495,9 @@ dd {
 
 .catalog-item {
   display: grid;
-  grid-template-columns: 92px minmax(0, 1fr);
-  gap: 14px;
-  padding: 14px;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.82);
@@ -510,7 +511,7 @@ dd {
 
 .catalog-copy h2 {
   margin: 5px 0 4px;
-  font-size: clamp(1.22rem, 6vw, 2.4rem);
+  font-size: clamp(1.08rem, 5.2vw, 2.4rem);
   line-height: 1.1;
 }
 
@@ -595,8 +596,8 @@ dd {
   }
 
   .preview-section {
-    padding-top: 58px;
-    padding-bottom: 58px;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 
   .activity-grid,
@@ -615,14 +616,18 @@ dd {
   }
 
   .media-card {
-    grid-template-columns: 96px minmax(0, 1fr);
-    min-height: 178px;
+    grid-template-columns: 86px minmax(0, 1fr);
+    min-height: 150px;
+  }
+
+  .preview-grid {
+    max-width: 900px;
   }
 
   .catalog-item {
-    grid-template-columns: 150px minmax(0, 1fr);
-    gap: 22px;
-    padding: 20px;
+    grid-template-columns: 124px minmax(0, 1fr);
+    gap: 18px;
+    padding: 18px;
   }
 
   .catalog-list {
