@@ -14,20 +14,20 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://espaco-agrestis.pages.dev"),
-  title: "Espaço Agrestis | Comunidade católica em Caruaru",
+  title: "Espaço Agrestis | Formação integral em Caruaru",
   description:
-    "Atividades, recolhimentos, cinedebates e clube do livro do Espaço Agrestis em Caruaru.",
+    "Espaço Cultural destinado à formação integral de homens, com recolhimentos, cinedebates e clube do livro em Caruaru.",
   openGraph: {
     title: "Espaço Agrestis",
     description:
-      "Agenda e memória das atividades da comunidade católica Espaço Agrestis em Caruaru.",
+      "Agenda e memória das atividades do Espaço Agrestis em Caruaru.",
     images: ["/og.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Espaço Agrestis",
     description:
-      "Recolhimentos, cinedebates, leituras e encontros de formação em Caruaru.",
+      "Formação integral, recolhimentos, cinedebates e leituras em Caruaru.",
     images: ["/og.png"],
   },
   icons: {

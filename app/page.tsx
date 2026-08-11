@@ -21,15 +21,14 @@ export default function Home() {
               alt="Brasão do Espaço Cultural Agrestis"
             />
             <div>
-              <p className="eyebrow">Comunidade católica</p>
-              <p>Caruaru, Pernambuco</p>
+              <p className="eyebrow">Espaço Cultural</p>
+              <p>@OpusDei em Caruaru - PE</p>
             </div>
           </div>
           <h1>Espaço Agrestis</h1>
           <p className="hero-text">
-            Um lugar para reunir recolhimentos, cinedebates, leituras e
-            encontros de formação inspirados nos ensinamentos de São Josemaria
-            Escrivá e no espírito do Opus Dei: santificar a vida cotidiana.
+            Espaço Cultural destinado à formação integral de homens, reunindo
+            recolhimentos, cinedebates, leituras e encontros em Caruaru.
           </p>
           <div className="hero-actions" aria-label="Ações principais">
             <a className="button primary" href="#atividades">
@@ -186,9 +185,9 @@ export default function Home() {
           <p className="eyebrow">Sobre a comunidade</p>
           <h2>Um espaço para formar, conviver e recomeçar</h2>
           <p>
-            O Espaço Agrestis reúne pessoas que desejam crescer na fé católica,
-            cultivar boas amizades e levar a sério a vocação cristã no meio do
-            mundo, com especial carinho pela vida cotidiana.
+            O Espaço Agrestis reúne homens que desejam crescer na formação
+            integral, cultivar boas amizades e levar a sério a vida cristã no
+            meio do mundo, com especial carinho pela vida cotidiana.
           </p>
           <p>
             A primeira versão do site nasce para organizar o que já acontece e

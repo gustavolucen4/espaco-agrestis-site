@@ -15,6 +15,19 @@ export function SiteHeader() {
         <a href="/clube-do-livro">Livros</a>
         <a href="/#contato">Contato</a>
       </nav>
+      <details className="mobile-menu">
+        <summary aria-label="Abrir menu">
+          <span />
+          <span />
+          <span />
+        </summary>
+        <div className="mobile-menu-panel" aria-label="Menu mobile">
+          <a href="/#atividades">Atividades</a>
+          <a href="/cinedebate">Cinedebate</a>
+          <a href="/clube-do-livro">Livros</a>
+          <a href="/#contato">Contato</a>
+        </div>
+      </details>
     </header>
   );
 }
