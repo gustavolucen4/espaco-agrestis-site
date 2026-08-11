@@ -54,8 +54,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 14px 18px;
+  gap: 12px;
+  padding: 10px 14px;
   border-bottom: 1px solid rgba(84, 99, 60, 0.16);
   background: rgba(251, 250, 247, 0.92);
   backdrop-filter: blur(14px);
@@ -65,14 +65,16 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+  font-size: 0.95rem;
   font-weight: 800;
   line-height: 1;
 }
 
 .brand-mark {
   display: block;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   overflow: hidden;
   border: 1px solid rgba(84, 99, 60, 0.28);
   border-radius: 8px;
@@ -101,26 +103,26 @@ nav a {
 .feature-section,
 .about-section,
 .contact-section {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1120px, calc(100% - 28px));
   margin: 0 auto;
 }
 
 .hero-section {
   display: grid;
-  gap: 22px;
-  min-height: calc(100svh - 64px);
-  padding: 42px 0 24px;
-  align-items: center;
+  gap: 16px;
+  min-height: auto;
+  padding: 22px 0 18px;
+  align-items: start;
 }
 
 .hero-copy {
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 
 .hero-logo {
-  width: 96px;
-  height: 96px;
+  width: 64px;
+  height: 64px;
   border: 1px solid rgba(84, 99, 60, 0.22);
   border-radius: 8px;
   object-fit: cover;
@@ -132,7 +134,7 @@ nav a {
 .tag {
   margin: 0;
   color: var(--wine);
-  font-size: 0.76rem;
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -148,21 +150,21 @@ p {
 h1 {
   max-width: 760px;
   margin-bottom: 0;
-  font-size: clamp(2.45rem, 13vw, 6.4rem);
-  line-height: 0.98;
+  font-size: clamp(2.25rem, 11vw, 6.4rem);
+  line-height: 1;
   letter-spacing: 0;
 }
 
 h2 {
   margin-bottom: 0;
-  font-size: clamp(1.55rem, 6.2vw, 3.35rem);
-  line-height: 1.08;
+  font-size: clamp(1.45rem, 5.8vw, 3.35rem);
+  line-height: 1.12;
   letter-spacing: 0;
 }
 
 h3 {
   margin-bottom: 0;
-  font-size: 1.22rem;
+  font-size: 1.08rem;
   line-height: 1.18;
   letter-spacing: 0;
 }
@@ -173,15 +175,15 @@ h3 {
 .about-section p,
 .contact-section p {
   color: var(--muted);
-  font-size: 1.06rem;
-  line-height: 1.68;
+  font-size: 0.98rem;
+  line-height: 1.58;
 }
 
 .hero-text {
   max-width: 690px;
   margin-bottom: 0;
   color: #403a33;
-  font-size: 1.16rem;
+  font-size: 1rem;
 }
 
 .hero-actions,
@@ -193,6 +195,7 @@ h3 {
 
 .button {
   display: inline-flex;
+  width: 100%;
   min-height: 46px;
   align-items: center;
   justify-content: center;
@@ -223,13 +226,13 @@ h3 {
 
 .next-card {
   display: grid;
-  gap: 12px;
-  padding: 22px;
+  gap: 10px;
+  padding: 16px;
 }
 
 .next-visual {
-  min-height: 170px;
-  margin: -22px -22px 6px;
+  min-height: 112px;
+  margin: -16px -16px 4px;
   border-radius: 8px 8px 0 0;
   background:
     linear-gradient(180deg, transparent 45%, rgba(38, 35, 31, 0.44)),
@@ -239,7 +242,7 @@ h3 {
 }
 
 .next-card h2 {
-  font-size: 1.35rem;
+  font-size: 1.08rem;
 }
 
 .next-card p {
@@ -250,7 +253,7 @@ h3 {
 
 .next-card .next-title {
   color: var(--foreground);
-  font-size: 1.4rem;
+  font-size: 1.12rem;
   font-weight: 800;
 }
 
@@ -272,20 +275,20 @@ h3 {
 
 .intro-band p {
   margin: 0;
-  padding: 20px;
+  padding: 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   font-weight: 800;
 }
 
 .section {
-  padding: 52px 0;
+  padding: 44px 0;
 }
 
 .section-heading {
   display: grid;
   max-width: 760px;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .section-heading p {
@@ -311,8 +314,8 @@ h3 {
 .activity-card,
 .content-card {
   display: grid;
-  gap: 14px;
-  padding: 20px;
+  gap: 12px;
+  padding: 16px;
 }
 
 .activity-card > span {
@@ -353,8 +356,8 @@ dd {
 
 .feature-section {
   display: grid;
-  gap: 22px;
-  padding: 42px 20px;
+  gap: 14px;
+  padding: 28px 16px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -469,23 +472,40 @@ dd {
 
 .page-hero {
   display: grid;
-  width: min(920px, calc(100% - 32px));
-  gap: 12px;
+  width: min(920px, calc(100% - 28px));
+  gap: 10px;
   margin: 0 auto;
-  padding: 32px 0 12px;
+  padding: 18px 0 8px;
 }
 
 .page-hero h1 {
-  font-size: clamp(2.35rem, 13vw, 5.6rem);
-  line-height: 0.98;
+  font-size: clamp(2rem, 10vw, 5.6rem);
+  line-height: 1.05;
 }
 
 .page-hero p:not(.eyebrow) {
   max-width: 760px;
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.58;
+  font-size: 0.96rem;
+  line-height: 1.52;
+}
+
+.page-hero .text-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 34px;
+  border: 1px solid rgba(51, 64, 33, 0.18);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.page-hero + .section {
+  padding-top: 18px;
 }
 
 .catalog-list {
@@ -525,13 +545,13 @@ dd {
 .about-section {
   display: grid;
   gap: 24px;
-  padding: 28px 0 70px;
+  padding: 22px 0 54px;
 }
 
 .about-image {
   position: relative;
   display: grid;
-  min-height: 260px;
+  min-height: 190px;
   place-items: end start;
   overflow: hidden;
   border-radius: 8px;
@@ -553,7 +573,7 @@ dd {
 .contact-section {
   display: grid;
   gap: 20px;
-  padding: 34px 20px;
+  padding: 28px 16px;
   border-radius: 8px 8px 0 0;
   background: var(--foreground);
   color: #fffdf6;
@@ -568,6 +588,15 @@ dd {
     padding: 16px 28px;
   }
 
+  .brand {
+    font-size: 1rem;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+
   nav {
     display: flex;
     align-items: center;
@@ -579,6 +608,61 @@ dd {
     gap: 42px;
     min-height: 720px;
     padding-top: 54px;
+    align-items: center;
+  }
+
+  .hero-copy {
+    gap: 18px;
+  }
+
+  .hero-logo {
+    width: 96px;
+    height: 96px;
+  }
+
+  .eyebrow,
+  .card-label,
+  .tag {
+    font-size: 0.76rem;
+  }
+
+  h3 {
+    font-size: 1.22rem;
+  }
+
+  .hero-text,
+  .section-heading p,
+  .feature-copy p,
+  .about-section p,
+  .contact-section p {
+    font-size: 1.06rem;
+    line-height: 1.68;
+  }
+
+  .hero-text {
+    font-size: 1.16rem;
+  }
+
+  .button {
+    width: auto;
+  }
+
+  .next-card {
+    gap: 12px;
+    padding: 22px;
+  }
+
+  .next-visual {
+    min-height: 170px;
+    margin: -22px -22px 6px;
+  }
+
+  .next-card h2 {
+    font-size: 1.35rem;
+  }
+
+  .next-card .next-title {
+    font-size: 1.4rem;
   }
 
   .intro-band {
@@ -593,6 +677,11 @@ dd {
 
   .section {
     padding: 76px 0;
+  }
+
+  .section-heading {
+    gap: 12px;
+    margin-bottom: 24px;
   }
 
   .preview-section {
@@ -646,6 +735,25 @@ dd {
   .feature-section,
   .contact-section {
     padding: 54px 34px;
+  }
+
+  .page-hero {
+    gap: 16px;
+    padding: 42px 0 24px;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(3rem, 10vw, 5.6rem);
+    line-height: 0.98;
+  }
+
+  .page-hero p:not(.eyebrow) {
+    font-size: 1.12rem;
+    line-height: 1.68;
+  }
+
+  .page-hero + .section {
+    padding-top: 42px;
   }
 
   .about-section {
