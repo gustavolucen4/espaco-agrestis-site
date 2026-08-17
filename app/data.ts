@@ -128,29 +128,29 @@ function mapBook(row: BookRow): Book {
   };
 }
 
+function prepareActivities(activities: Activity[], now = Date.now()) {
+  const upcoming = activities
+    .filter((activity) => !activity.dateTime || new Date(activity.dateTime).getTime() >= now)
+    .sort((first, second) => {
+      if (first.dateTime && second.dateTime) {
+        return new Date(first.dateTime).getTime() - new Date(second.dateTime).getTime();
+      }
+      if (first.dateTime) return -1;
+      if (second.dateTime) return 1;
+      return 0;
+    });
+
+  const nextDatedIndex = upcoming.findIndex((activity) => activity.dateTime);
+  return upcoming.map((activity, index) => ({
+    ...activity,
+    featured: index === nextDatedIndex,
+  }));
+}
+
 export async function getActivities(): Promise<Activity[]> {
   const client = createPublicClient();
   const now = Date.now();
-  const prepareActivities = (activities: Activity[]) => {
-    const upcoming = activities
-      .filter((activity) => !activity.dateTime || new Date(activity.dateTime).getTime() >= now)
-      .sort((first, second) => {
-        if (first.dateTime && second.dateTime) {
-          return new Date(first.dateTime).getTime() - new Date(second.dateTime).getTime();
-        }
-        if (first.dateTime) return -1;
-        if (second.dateTime) return 1;
-        return 0;
-      });
-
-    const nextDatedIndex = upcoming.findIndex((activity) => activity.dateTime);
-    return upcoming.map((activity, index) => ({
-      ...activity,
-      featured: index === nextDatedIndex,
-    }));
-  };
-
-  if (!client) return prepareActivities(fallbackActivities);
+  if (!client) return prepareActivities(fallbackActivities, now);
   const { data, error } = await client
     .from("activities")
     .select("type_label,title,starts_at,date_text,location_name,city,state,theme,description,detail_url,featured,sort_order")
@@ -160,6 +160,7 @@ export async function getActivities(): Promise<Activity[]> {
     .order("sort_order");
   return prepareActivities(
     error ? fallbackActivities : (data as ActivityRow[] | null)?.map(mapActivity) || [],
+    now,
   );
 }
 
@@ -186,10 +187,23 @@ export async function getBooks(): Promise<Book[]> {
 }
 
 export async function getPublicContent() {
-  const [activities, movies, books] = await Promise.all([
-    getActivities(),
-    getMovies(),
-    getBooks(),
-  ]);
+  const client = createPublicClient();
+  if (client) {
+    const { data, error } = await client.rpc("get_public_content");
+    if (!error && data && typeof data === "object" && !Array.isArray(data)) {
+      const feed = data as {
+        activities?: ActivityRow[];
+        movies?: MovieRow[];
+        books?: BookRow[];
+      };
+      return {
+        activities: prepareActivities((feed.activities || []).map(mapActivity)),
+        movies: (feed.movies || []).map(mapMovie),
+        books: (feed.books || []).map(mapBook),
+      };
+    }
+  }
+
+  const [activities, movies, books] = await Promise.all([getActivities(), getMovies(), getBooks()]);
   return { activities, movies, books };
 }
