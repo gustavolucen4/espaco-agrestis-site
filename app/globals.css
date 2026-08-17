@@ -299,6 +299,8 @@ h3 { margin-bottom: 0; font-size: 1.08rem; line-height: 1.2; letter-spacing: 0; 
 dl { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0; }
 dt { color: var(--muted); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
 dd { margin: 3px 0 0; font-size: 0.88rem; font-weight: 800; }
+.activity-theme { grid-column: 1 / -1; padding-top: 2px; }
+.activity-theme dd { color: var(--olive-dark); line-height: 1.45; }
 
 .feature-section {
   display: grid;

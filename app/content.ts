@@ -5,6 +5,7 @@ export type Activity = {
   dateDay?: string;
   dateMonth?: string;
   place: string;
+  theme?: string;
   detail: string;
   href: string;
   featured?: boolean;
@@ -54,11 +55,12 @@ export const upcomingActivities: Activity[] = [
   },
   {
     type: "Recolhimento mensal",
-    title: "Manhã de recolhimento com sacerdote",
-    date: "Nova data em breve",
-    place: "Caruaru, PE",
+    title: "Recolhimento Mensal com Padre Paulo Sérgio",
+    date: "24 de agosto de 2026, às 19h",
+    place: "Catedral · Caruaru, PE",
+    theme: "Atraídos pelo amor de Deus no nosso cotidiano",
     detail:
-      "Tempo de oração, formação e silêncio para renovar a vida interior no cotidiano.",
+      "Tempo de oração, formação e silêncio para renovar a vida interior.",
     href: "/#recolhimento",
   },
   {

@@ -40,6 +40,9 @@ test("renders the Espaço Agrestis home with the current agenda", async () => {
   assert.match(html, /Rocky Balboa/);
   assert.match(html, /instagram\.com\/espacoagrestis/);
   assert.match(html, /Pan Nossa/);
+  assert.match(html, /Padre Paulo Sérgio/);
+  assert.match(html, /24 de agosto de 2026, às 19h/);
+  assert.match(html, /Atraídos pelo amor de Deus no nosso cotidiano/);
   assert.doesNotMatch(html, /Building your site|No MVP/);
 });
 

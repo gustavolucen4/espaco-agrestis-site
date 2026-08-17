@@ -95,6 +95,7 @@ export default function Home() {
                 <dl>
                   <div><dt>Data</dt><dd>{activity.date}</dd></div>
                   <div><dt>Local</dt><dd>{activity.place}</dd></div>
+                  {activity.theme ? <div className="activity-theme"><dt>Tema</dt><dd>{activity.theme}</dd></div> : null}
                 </dl>
                 <p>{activity.detail}</p>
                 <a className="text-link" href={activity.href}>Ver atividade</a>
@@ -115,8 +116,9 @@ export default function Home() {
             meditação, examinar a própria vida e recomeçar com serenidade.
           </p>
           <p>
-            A próxima data será divulgada em breve. Os encontros acontecem em
-            Caruaru e contam com a presença de um sacerdote.
+            O próximo encontro será em 24 de agosto, às 19h, na Catedral, com
+            Padre Paulo Sérgio. O tema será “Atraídos pelo amor de Deus no nosso
+            cotidiano”.
           </p>
         </div>
       </section>
