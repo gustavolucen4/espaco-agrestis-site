@@ -1,17 +1,25 @@
 import { Cover } from "./components/Cover";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
-import { books, pillars, upcomingActivities, watchedMovies } from "./content";
+import { pillars } from "./content";
+import { getPublicContent } from "./data";
 
-export default function Home() {
-  const favoriteMovie = watchedMovies.find((movie) => movie.favorite);
-  const latestMovie = watchedMovies.at(-1);
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const { activities, books, movies } = await getPublicContent();
+  const favoriteMovie = movies.find((movie) => movie.favorite);
+  const latestMovie = movies.at(-1);
   const featuredMovies = [favoriteMovie, latestMovie].filter(
-    (movie): movie is (typeof watchedMovies)[number] => Boolean(movie),
+    (movie): movie is (typeof movies)[number] => Boolean(movie),
   );
   const featuredBooks = books
     .filter((book) => book.stage !== "upcoming")
     .sort((book) => (book.stage === "current" ? -1 : 1));
+  const featuredActivity = activities.find((activity) => activity.featured) || activities[0];
+  const recollection = activities.find((activity) =>
+    activity.type.toLocaleLowerCase("pt-BR").includes("recolhimento"),
+  );
 
   return (
     <main>
@@ -40,24 +48,24 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="next-card" aria-labelledby="next-title">
+        {featuredActivity ? <aside className="next-card" aria-labelledby="next-title">
           <div className="next-card-top">
             <span className="card-label">Próxima atividade</span>
-            <span className="status-dot">22 de agosto</span>
+            <span className="status-dot">{featuredActivity.date}</span>
           </div>
           <div className="next-event-main">
-            <time className="date-badge" dateTime="2026-08-22">
-              <strong>22</strong>
-              <span>AGO</span>
-            </time>
+            {featuredActivity.dateDay ? <time className="date-badge" dateTime={featuredActivity.dateTime}>
+              <strong>{featuredActivity.dateDay}</strong>
+              <span>{featuredActivity.dateMonth}</span>
+            </time> : null}
             <div>
-              <p className="next-event-type">Clube do Livro</p>
-              <h2 id="next-title">A Sociedade do Anel</h2>
-              <p>22 de agosto, às 9h · Pan Nossa</p>
+              <p className="next-event-type">{featuredActivity.type}</p>
+              <h2 id="next-title">{featuredActivity.title}</h2>
+              <p>{featuredActivity.date} · {featuredActivity.place}</p>
             </div>
           </div>
-          <a href="/clube-do-livro" className="text-link">Ver detalhes da leitura</a>
-        </aside>
+          <a href={featuredActivity.href} className="text-link">Ver detalhes da atividade</a>
+        </aside> : null}
       </section>
 
       <section className="intro-band" aria-label="Pilares do Espaço Agrestis">
@@ -79,13 +87,13 @@ export default function Home() {
           </p>
         </div>
         <div className="activity-grid">
-          {upcomingActivities.map((activity) => (
+          {activities.map((activity) => (
             <article
               className={`activity-card${activity.featured ? " featured" : ""}`}
-              key={activity.type}
+              key={`${activity.type}-${activity.title}`}
             >
               {activity.featured && activity.dateDay ? (
-                <time className="activity-date" dateTime="2026-08-22">
+                <time className="activity-date" dateTime={activity.dateTime}>
                   <strong>{activity.dateDay}</strong><span>{activity.dateMonth}</span>
                 </time>
               ) : null}
@@ -115,11 +123,10 @@ export default function Home() {
             O recolhimento mensal é um tempo reservado para rezar, escutar uma
             meditação, examinar a própria vida e recomeçar com serenidade.
           </p>
-          <p>
-            O próximo encontro será em 24 de agosto, às 19h, na Catedral, com
-            Padre Paulo Sérgio. O tema será “Atraídos pelo amor de Deus no nosso
-            cotidiano”.
-          </p>
+          {recollection ? <p>
+            O próximo encontro será {recollection.date}, em {recollection.place}.
+            {recollection.theme ? ` O tema será “${recollection.theme}”.` : ""}
+          </p> : null}
         </div>
       </section>
 

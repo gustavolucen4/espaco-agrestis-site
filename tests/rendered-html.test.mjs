@@ -80,3 +80,11 @@ test("renders books grouped by reading stage", async () => {
   assert.match(html, /\/covers\/sociedade-do-anel\.webp/);
   assert.match(html, /22 de agosto de 2026, às 9h/);
 });
+
+test("renders the protected administration entry point", async () => {
+  const html = await renderHtml("/admin");
+
+  assert.match(html, /<title>Administração \| Espaço Agrestis/);
+  assert.match(html, /Verificando acesso/);
+  assert.match(html, /logo-agrestis\.jpg/);
+});

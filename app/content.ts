@@ -2,6 +2,7 @@ export type Activity = {
   type: string;
   title: string;
   date: string;
+  dateTime?: string;
   dateDay?: string;
   dateMonth?: string;
   place: string;
@@ -45,6 +46,7 @@ export const upcomingActivities: Activity[] = [
     type: "Clube do Livro",
     title: "O Senhor dos Anéis: A Sociedade do Anel",
     date: "22 de agosto de 2026, às 9h",
+    dateTime: "2026-08-22T09:00:00-03:00",
     dateDay: "22",
     dateMonth: "AGO",
     place: "Pan Nossa · Caruaru, PE",
@@ -57,6 +59,7 @@ export const upcomingActivities: Activity[] = [
     type: "Recolhimento mensal",
     title: "Recolhimento Mensal com Padre Paulo Sérgio",
     date: "24 de agosto de 2026, às 19h",
+    dateTime: "2026-08-24T19:00:00-03:00",
     place: "Catedral · Caruaru, PE",
     theme: "Atraídos pelo amor de Deus no nosso cotidiano",
     detail:

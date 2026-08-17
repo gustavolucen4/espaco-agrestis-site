@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Cover } from "../components/Cover";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-import { books } from "../content";
+import { getActivities, getBooks } from "../data";
 
 export const metadata: Metadata = {
   title: "Clube do Livro | Espaço Agrestis",
@@ -12,7 +12,13 @@ export const metadata: Metadata = {
     "Livros do Clube do Livro do Espaço Agrestis em Caruaru, com capas, autores e pontos de conversa.",
 };
 
-export default function ClubeDoLivroPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ClubeDoLivroPage() {
+  const [books, activities] = await Promise.all([getBooks(), getActivities()]);
+  const nextBookMeeting = activities.find((activity) =>
+    activity.type.toLocaleLowerCase("pt-BR").includes("livro"),
+  );
   const stages = [
     { key: "current", eyebrow: "Agora", title: "Em leitura" },
     { key: "read", eyebrow: "Nossa história", title: "Já lemos" },
@@ -76,7 +82,7 @@ export default function ClubeDoLivroPage() {
       </section>
 
       <section className="page-cta">
-        <div><p className="eyebrow">Próximo encontro</p><h2>22 de agosto, às 9h</h2><p>A Sociedade do Anel · Pan Nossa, Av. Maj. Manoel de Freitas, 31.</p></div>
+        <div><p className="eyebrow">Próximo encontro</p><h2>{nextBookMeeting?.date || "Data a confirmar"}</h2><p>{nextBookMeeting ? `${nextBookMeeting.title} · ${nextBookMeeting.place}` : "Acompanhe a agenda para saber a próxima leitura."}</p></div>
         <a className="button primary" href="/#atividades">Ver agenda</a>
       </section>
       <SiteFooter />

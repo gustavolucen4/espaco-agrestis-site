@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Cover } from "../components/Cover";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-import { watchedMovies } from "../content";
+import { getMovies } from "../data";
 
 export const metadata: Metadata = {
   title: "Cinedebate | Espaço Agrestis",
@@ -12,7 +12,10 @@ export const metadata: Metadata = {
     "Filmes assistidos no Cinedebate do Espaço Agrestis em Caruaru, com capas, temas e pontos de conversa.",
 };
 
-export default function CinedebatePage() {
+export const dynamic = "force-dynamic";
+
+export default async function CinedebatePage() {
+  const watchedMovies = await getMovies();
   return (
     <main>
       <SiteHeader active="cinedebate" />
