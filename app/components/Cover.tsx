@@ -42,7 +42,9 @@ export function Cover({ alt, format = "cover", image, label, priority = false, t
               loading={priority ? "eager" : "lazy"}
             />
           </span>
-          <span className="cover-zoom-hint" aria-hidden="true">+</span>
+          <span className="cover-zoom-hint" aria-hidden="true">
+            <span className="cover-zoom-icon" />
+          </span>
         </button>
         {/* The click handler closes only the dialog backdrop. */}
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}

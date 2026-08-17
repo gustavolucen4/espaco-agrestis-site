@@ -37,7 +37,10 @@ export default function CinedebatePage() {
         </div>
         <div className="catalog-list movie-catalog">
           {watchedMovies.map((movie, index) => (
-            <article className="catalog-item" key={movie.title}>
+            <article
+              className={`catalog-item${index === watchedMovies.length - 1 ? " latest-session" : ""}`}
+              key={movie.title}
+            >
               <Cover
                 alt={movie.coverAlt}
                 format={movie.coverFormat}
@@ -51,6 +54,7 @@ export default function CinedebatePage() {
                 <div className="catalog-meta">
                   <p className="tag">Sessão {String(movie.order).padStart(2, "0")}</p>
                   {movie.favorite ? <span className="favorite-badge">Nosso favorito</span> : null}
+                  {index === watchedMovies.length - 1 ? <span className="latest-badge">Sessão mais recente</span> : null}
                 </div>
                 <h3>{movie.title}</h3>
                 <p className="author">{movie.year} · {movie.theme}</p>
@@ -58,7 +62,7 @@ export default function CinedebatePage() {
               <p className="catalog-description">{movie.description}</p>
               {movie.postUrl ? (
                 <a className="post-link" href={movie.postUrl} target="_blank" rel="noreferrer">
-                  Ver publicação no Instagram
+                  <span>Ver post</span><span aria-hidden="true">↗</span>
                 </a>
               ) : null}
               <details className="discussion-note">

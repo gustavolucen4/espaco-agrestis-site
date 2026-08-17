@@ -9,7 +9,9 @@ export default function Home() {
   const featuredMovies = [favoriteMovie, latestMovie].filter(
     (movie): movie is (typeof watchedMovies)[number] => Boolean(movie),
   );
-  const featuredBooks = books.filter((book) => book.stage !== "upcoming");
+  const featuredBooks = books
+    .filter((book) => book.stage !== "upcoming")
+    .sort((book) => (book.stage === "current" ? -1 : 1));
 
   return (
     <main>

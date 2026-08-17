@@ -61,7 +61,7 @@ export default function ClubeDoLivroPage() {
                         <p className="meeting-label">{book.meeting}</p>
                       </div>
                       <p className="catalog-description">{book.description}</p>
-                      {book.postUrl ? <a className="post-link" href={book.postUrl} target="_blank" rel="noreferrer">Ver publicação no Instagram</a> : null}
+                      {book.postUrl ? <a className="post-link" href={book.postUrl} target="_blank" rel="noreferrer"><span>Ver post</span><span aria-hidden="true">↗</span></a> : null}
                       <details className="discussion-note"><summary>Para conversar</summary><p>{book.discussion}</p></details>
                     </article>
                   ))}

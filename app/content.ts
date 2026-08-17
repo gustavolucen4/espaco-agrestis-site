@@ -81,7 +81,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/genio-indomavel.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Gênio Indomável",
+    coverAlt: "Arte da sessão de Gênio Indomável",
     postUrl: "https://www.instagram.com/p/DNyCuMUWqRy/",
     description:
       "Um jovem de inteligência extraordinária precisa decidir se continuará protegido por suas defesas ou aceitará ajuda para construir o próprio caminho.",
@@ -96,7 +96,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/whiplash.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Whiplash",
+    coverAlt: "Arte da sessão de Whiplash",
     postUrl: "https://www.instagram.com/p/DPd-mobDa4S/",
     description:
       "A busca obsessiva pela excelência coloca um jovem músico diante dos limites entre disciplina, talento, abuso e sucesso.",
@@ -112,7 +112,7 @@ export const watchedMovies: Movie[] = [
     favorite: true,
     coverImage: "/covers/felicidade.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Felicidade Não Se Compra",
+    coverAlt: "Arte da sessão de Felicidade Não Se Compra",
     postUrl: "https://www.instagram.com/p/DRz5IznETiq/",
     description:
       "Ao atravessar sua noite mais difícil, um homem descobre o valor que sua presença, seus sacrifícios e suas amizades tiveram na vida de toda uma cidade.",
@@ -127,7 +127,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/onde-fracos.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Onde os Fracos Não Têm Vez",
+    coverAlt: "Arte da sessão de Onde os Fracos Não Têm Vez",
     postUrl: "https://www.instagram.com/p/DTfhdKmDeM0/",
     description:
       "Uma decisão tomada diante de uma fortuna abandonada desencadeia uma perseguição marcada pela violência e pelas consequências do acaso.",
@@ -142,7 +142,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/preco-resgate.webp",
     coverFormat: "post",
-    coverAlt: "Capa do filme O Preço de um Resgate",
+    coverAlt: "Arte da sessão de O Preço de um Resgate",
     postUrl: "https://www.instagram.com/p/DU0urzPDVdf/",
     description:
       "O sequestro de uma criança leva seu pai a uma decisão extrema, colocando em tensão prudência, coragem e amor pela família.",
@@ -157,7 +157,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/gladiador.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Gladiador",
+    coverAlt: "Arte da sessão de Gladiador",
     postUrl: "https://www.instagram.com/p/DXcIa51DU80/",
     description:
       "Um general traído transforma sua busca por justiça em uma luta por fidelidade, honra e liberdade diante do poder corrompido.",
@@ -172,7 +172,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/cidadao-kane.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Cidadão Kane",
+    coverAlt: "Arte da sessão de Cidadão Kane",
     postUrl: "https://www.instagram.com/p/DYhpPWatYxI/",
     description:
       "A vida de um magnata da imprensa é reconstruída a partir de lembranças que revelam suas conquistas, perdas e contradições.",
@@ -187,7 +187,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/encontraras-dragoes.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Encontrarás Dragões",
+    coverAlt: "Arte da sessão de Encontrarás Dragões",
     postUrl: "https://www.instagram.com/espacoagrestis/p/DaSgI7hxbEq/",
     description:
       "Duas trajetórias atravessadas pela guerra e por escolhas opostas conduzem a uma reflexão sobre fé, ressentimento, perdão e santidade no cotidiano.",
@@ -202,7 +202,7 @@ export const watchedMovies: Movie[] = [
     status: "Já assistido",
     coverImage: "/covers/rocky-balboa.jpg",
     coverFormat: "post",
-    coverAlt: "Capa do filme Rocky Balboa",
+    coverAlt: "Arte da sessão de Rocky Balboa",
     postUrl: "https://www.instagram.com/espacoagrestis/p/DbUPwv2NvJW/",
     description:
       "Anos depois de deixar os ringues, Rocky encontra uma última oportunidade de enfrentar seus limites e dar sentido ao que ainda carrega por dentro.",

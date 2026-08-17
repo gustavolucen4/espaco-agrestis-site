@@ -57,8 +57,8 @@ test("renders all Cinedebate sessions in viewing order", async () => {
   assert.match(html, /\/covers\/rocky-balboa\.jpg/);
   assert.match(html, /loading="eager"/);
   assert.match(html, /loading="lazy"/);
-  assert.match(html, /Ampliar capa do filme/);
-  assert.match(html, /Ver publicação no Instagram/);
+  assert.match(html, /Ampliar arte da sessão/);
+  assert.match(html, /Ver post/);
 });
 
 test("renders books grouped by reading stage", async () => {
