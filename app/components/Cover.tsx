@@ -43,7 +43,11 @@ export function Cover({ alt, format = "cover", image, label, priority = false, t
             />
           </span>
           <span className="cover-zoom-hint" aria-hidden="true">
-            <span className="cover-zoom-icon" />
+            <svg viewBox="0 0 24 24" role="presentation">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4 4" />
+              <path d="M11 8v6M8 11h6" />
+            </svg>
           </span>
         </button>
         {/* The click handler closes only the dialog backdrop. */}

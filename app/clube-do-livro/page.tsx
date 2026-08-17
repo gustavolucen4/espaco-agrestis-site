@@ -62,7 +62,10 @@ export default function ClubeDoLivroPage() {
                       </div>
                       <p className="catalog-description">{book.description}</p>
                       {book.postUrl ? <a className="post-link" href={book.postUrl} target="_blank" rel="noreferrer"><span>Ver post</span><span aria-hidden="true">↗</span></a> : null}
-                      <details className="discussion-note"><summary>Para conversar</summary><p>{book.discussion}</p></details>
+                      <div className="discussion-note">
+                        <p className="discussion-title">{stage.key === "read" ? "O que conversamos" : "Pontos para conversar"}</p>
+                        <p>{book.discussion}</p>
+                      </div>
                     </article>
                   ))}
                 </div>

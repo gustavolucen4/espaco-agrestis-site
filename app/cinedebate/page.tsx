@@ -65,10 +65,10 @@ export default function CinedebatePage() {
                   <span>Ver post</span><span aria-hidden="true">↗</span>
                 </a>
               ) : null}
-              <details className="discussion-note">
-                <summary>Para conversar</summary>
+              <div className="discussion-note">
+                <p className="discussion-title">O que conversamos</p>
                 <p>{movie.discussion}</p>
-              </details>
+              </div>
             </article>
           ))}
         </div>
