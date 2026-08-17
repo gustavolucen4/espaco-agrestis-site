@@ -853,6 +853,7 @@ dd { margin: 3px 0 0; font-size: 0.88rem; font-weight: 800; }
 .admin-check { display: flex !important; min-height: 44px; align-items: center; gap: 10px !important; border: 1px solid var(--line); border-radius: 5px; background: #fff; padding: 10px 12px; }
 .admin-check input { width: 18px; min-height: 18px; accent-color: var(--olive); }
 .admin-image-field { display: grid; gap: 12px; }
+.admin-field-help { margin: -5px 0 0; color: var(--muted); font-size: 0.76rem; line-height: 1.4; }
 .admin-image-field > img { width: 92px; aspect-ratio: 2 / 3; border: 1px solid var(--line); border-radius: 5px; object-fit: cover; }
 .upload-button { display: inline-flex !important; width: fit-content; min-height: 44px; align-items: center; gap: 8px !important; border: 1px solid var(--olive); border-radius: 5px; background: #fff; color: var(--olive-dark) !important; padding: 9px 12px; cursor: pointer; }
 .upload-button input { position: absolute; width: 1px; height: 1px; min-height: 0; opacity: 0; }

@@ -74,7 +74,7 @@ const fields: Record<Tab, Field[]> = {
     { name: "release_year", label: "Ano", type: "number" },
     { name: "theme", label: "Tema", required: true },
     { name: "status_label", label: "Situação", required: true },
-    { name: "cover_url", label: "Capa", type: "image", wide: true },
+    { name: "cover_url", label: "Capa (opcional)", type: "image", wide: true },
     { name: "cover_format", label: "Formato da imagem", type: "select", options: [
       { value: "cover", label: "Capa vertical" },
       { value: "post", label: "Post quadrado" },
@@ -97,7 +97,7 @@ const fields: Record<Tab, Field[]> = {
     { name: "status_label", label: "Situação", required: true },
     { name: "meeting_at", label: "Data do encontro", type: "datetime-local" },
     { name: "meeting_label", label: "Texto do encontro", required: true, wide: true },
-    { name: "cover_url", label: "Capa", type: "image", wide: true },
+    { name: "cover_url", label: "Capa (opcional)", type: "image", wide: true },
     { name: "cover_format", label: "Formato da imagem", type: "select", options: [
       { value: "cover", label: "Capa vertical" },
       { value: "post", label: "Post quadrado" },
@@ -352,7 +352,7 @@ export function AdminDashboard() {
                 if (field.type === "checkbox") return <label className={`admin-check ${field.wide ? "wide" : ""}`} key={field.name}><input type="checkbox" checked={Boolean(value)} onChange={(event) => setForm({ ...form, [field.name]: event.target.checked })} /><span>{field.label}</span></label>;
                 if (field.type === "textarea") return <label className={field.wide ? "wide" : ""} key={field.name}>{field.label}<textarea rows={4} value={String(value ?? "")} onChange={(event) => setForm({ ...form, [field.name]: event.target.value })} required={field.required} /></label>;
                 if (field.type === "select") return <label className={field.wide ? "wide" : ""} key={field.name}>{field.label}<select value={String(value ?? "")} onChange={(event) => setForm({ ...form, [field.name]: event.target.value })} required={field.required}>{field.options?.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}</select></label>;
-                if (field.type === "image") return <div className="admin-image-field wide" key={field.name}><label>{field.label}<input type="url" placeholder="Link da imagem ou envie um arquivo abaixo" value={String(value ?? "")} onChange={(event) => setForm({ ...form, [field.name]: event.target.value })} /></label><label className="upload-button"><Upload size={18} /><span>{coverFile ? coverFile.name : "Escolher imagem"}</span><input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={(event) => setCoverFile(event.target.files?.[0] || null)} /></label>{(coverFile || value) ? <img src={coverFile ? URL.createObjectURL(coverFile) : String(value)} alt="Prévia da capa" /> : null}</div>;
+                if (field.type === "image") return <div className="admin-image-field wide" key={field.name}><label>{field.label}<input type="text" placeholder="Mantenha a capa atual, cole um link ou envie uma imagem" value={String(value ?? "")} onChange={(event) => setForm({ ...form, [field.name]: event.target.value })} /></label><p className="admin-field-help">Deixe em branco para publicar sem capa.</p><label className="upload-button"><Upload size={18} /><span>{coverFile ? coverFile.name : "Escolher imagem"}</span><input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={(event) => setCoverFile(event.target.files?.[0] || null)} /></label>{(coverFile || value) ? <img src={coverFile ? URL.createObjectURL(coverFile) : String(value)} alt="Prévia da capa" /> : null}</div>;
                 return <label className={field.wide ? "wide" : ""} key={field.name}>{field.label}<input type={field.type || "text"} value={String(value ?? "")} onChange={(event) => setForm({ ...form, [field.name]: field.type === "number" ? (event.target.value === "" ? "" : Number(event.target.value)) : event.target.value })} required={field.required} /></label>;
               })}
             </div>
