@@ -18,6 +18,7 @@ type ActivityRow = {
   description: string;
   detail_url: string;
   featured: boolean;
+  sort_order: number;
 };
 
 type MovieRow = {
@@ -129,16 +130,37 @@ function mapBook(row: BookRow): Book {
 
 export async function getActivities(): Promise<Activity[]> {
   const client = createPublicClient();
-  if (!client) return fallbackActivities;
+  const now = Date.now();
+  const prepareActivities = (activities: Activity[]) => {
+    const upcoming = activities
+      .filter((activity) => !activity.dateTime || new Date(activity.dateTime).getTime() >= now)
+      .sort((first, second) => {
+        if (first.dateTime && second.dateTime) {
+          return new Date(first.dateTime).getTime() - new Date(second.dateTime).getTime();
+        }
+        if (first.dateTime) return -1;
+        if (second.dateTime) return 1;
+        return 0;
+      });
+
+    const nextDatedIndex = upcoming.findIndex((activity) => activity.dateTime);
+    return upcoming.map((activity, index) => ({
+      ...activity,
+      featured: index === nextDatedIndex,
+    }));
+  };
+
+  if (!client) return prepareActivities(fallbackActivities);
   const { data, error } = await client
     .from("activities")
-    .select("type_label,title,starts_at,date_text,location_name,city,state,theme,description,detail_url,featured")
+    .select("type_label,title,starts_at,date_text,location_name,city,state,theme,description,detail_url,featured,sort_order")
     .eq("published", true)
-    .in("status", ["scheduled", "completed"])
+    .eq("status", "scheduled")
+    .or(`starts_at.gte.${new Date(now).toISOString()},starts_at.is.null`)
     .order("sort_order");
-  return error || !data?.length
-    ? fallbackActivities
-    : (data as ActivityRow[]).map(mapActivity);
+  return prepareActivities(
+    error ? fallbackActivities : (data as ActivityRow[] | null)?.map(mapActivity) || [],
+  );
 }
 
 export async function getMovies(): Promise<Movie[]> {

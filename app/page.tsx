@@ -16,7 +16,7 @@ export default async function Home() {
   const featuredBooks = books
     .filter((book) => book.stage !== "upcoming")
     .sort((book) => (book.stage === "current" ? -1 : 1));
-  const featuredActivity = activities.find((activity) => activity.featured) || activities[0];
+  const featuredActivity = activities.find((activity) => activity.featured);
   const recollection = activities.find((activity) =>
     activity.type.toLocaleLowerCase("pt-BR").includes("recolhimento"),
   );
