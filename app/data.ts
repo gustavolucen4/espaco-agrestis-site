@@ -50,6 +50,14 @@ type BookRow = {
   discussion: string;
 };
 
+type PublicContent = {
+  activities: Activity[];
+  movies: Movie[];
+  books: Book[];
+};
+
+let publicContentCache: { value: PublicContent; expiresAt: number } | null = null;
+
 const longDate = new Intl.DateTimeFormat("pt-BR", {
   timeZone: "America/Recife",
   day: "numeric",
@@ -186,7 +194,12 @@ export async function getBooks(): Promise<Book[]> {
   return error || !data?.length ? fallbackBooks : (data as BookRow[]).map(mapBook);
 }
 
-export async function getPublicContent() {
+export async function getPublicContent(): Promise<PublicContent> {
+  const now = Date.now();
+  if (publicContentCache && publicContentCache.expiresAt > now) {
+    return publicContentCache.value;
+  }
+
   const client = createPublicClient();
   if (client) {
     const { data, error } = await client.rpc("get_public_content");
@@ -196,14 +209,18 @@ export async function getPublicContent() {
         movies?: MovieRow[];
         books?: BookRow[];
       };
-      return {
+      const value = {
         activities: prepareActivities((feed.activities || []).map(mapActivity)),
         movies: (feed.movies || []).map(mapMovie),
         books: (feed.books || []).map(mapBook),
       };
+      publicContentCache = { value, expiresAt: now + 120_000 };
+      return value;
     }
   }
 
   const [activities, movies, books] = await Promise.all([getActivities(), getMovies(), getBooks()]);
-  return { activities, movies, books };
+  const value = { activities, movies, books };
+  publicContentCache = { value, expiresAt: now + 30_000 };
+  return value;
 }

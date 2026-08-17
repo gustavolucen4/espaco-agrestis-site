@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Cover } from "../components/Cover";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-import { getMovies } from "../data";
+import { getPublicContent } from "../data";
 
 export const metadata: Metadata = {
   title: "Cinedebate | Espaço Agrestis",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function CinedebatePage() {
-  const watchedMovies = await getMovies();
+  const { movies: watchedMovies } = await getPublicContent();
   return (
     <main>
       <SiteHeader active="cinedebate" />

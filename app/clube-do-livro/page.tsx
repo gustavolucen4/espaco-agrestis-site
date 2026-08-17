@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Cover } from "../components/Cover";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-import { getActivities, getBooks } from "../data";
+import { getPublicContent } from "../data";
 
 export const metadata: Metadata = {
   title: "Clube do Livro | Espaço Agrestis",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function ClubeDoLivroPage() {
-  const [books, activities] = await Promise.all([getBooks(), getActivities()]);
+  const { books, activities } = await getPublicContent();
   const nextBookMeeting = activities.find((activity) =>
     activity.type.toLocaleLowerCase("pt-BR").includes("livro"),
   );
