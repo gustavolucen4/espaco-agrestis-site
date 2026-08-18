@@ -9,12 +9,16 @@ import {
   EyeOff,
   Film,
   LogOut,
+  MailPlus,
   Pencil,
   Plus,
   RefreshCw,
   Save,
   Trash2,
   Upload,
+  UserCheck,
+  Users,
+  UserX,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +28,7 @@ import { createBrowserSupabaseClient } from "../lib/supabase";
 
 type Tab = "activities" | "movies" | "books";
 type Row = Record<string, string | number | boolean | null> & { id: string };
+type AdminUser = { email: string; active: boolean; created_at: string };
 type Field = {
   name: string;
   label: string;
@@ -144,8 +149,16 @@ export function AdminDashboard() {
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("gustavolucena12@gmail.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [usersOpen, setUsersOpen] = useState(false);
+  const [admins, setAdmins] = useState<AdminUser[]>([]);
+  const [currentAdminEmail, setCurrentAdminEmail] = useState("");
+  const [inviting, setInviting] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState("");
+  const [needsPassword, setNeedsPassword] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const verifyAdmin = useCallback(async () => {
     setAuthState("checking");
@@ -156,6 +169,7 @@ export function AdminDashboard() {
       setAuthState("signed-out");
       return;
     }
+    setCurrentAdminEmail(String(data.email));
     setAuthState("ready");
   }, [supabase]);
 
@@ -168,6 +182,26 @@ export function AdminDashboard() {
     if (error) setMessage(error.message);
     else setRows((data || []) as Row[]);
   }, [supabase, tab]);
+
+  const loadAdmins = useCallback(async () => {
+    setBusy(true);
+    setMessage("");
+    const { data, error } = await supabase.functions.invoke("manage-admins", {
+      body: { action: "list" },
+    });
+    setBusy(false);
+    if (error) setMessage(await functionErrorMessage(error));
+    else setAdmins((data?.admins || []) as AdminUser[]);
+  }, [supabase]);
+
+  useEffect(() => {
+    const hashType = new URLSearchParams(window.location.hash.slice(1)).get("type");
+    const queryType = new URLSearchParams(window.location.search).get("type");
+    if (hashType === "invite" || queryType === "invite") {
+      const timer = window.setTimeout(() => setNeedsPassword(true), 0);
+      return () => window.clearTimeout(timer);
+    }
+  }, []);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -183,9 +217,9 @@ export function AdminDashboard() {
 
   useEffect(() => {
     if (authState !== "ready") return;
-    const timer = window.setTimeout(loadRows, 0);
+    const timer = window.setTimeout(usersOpen ? loadAdmins : loadRows, 0);
     return () => window.clearTimeout(timer);
-  }, [authState, loadRows]);
+  }, [authState, loadAdmins, loadRows, usersOpen]);
 
   async function login(event: FormEvent) {
     event.preventDefault();
@@ -196,21 +230,61 @@ export function AdminDashboard() {
     if (error) setMessage("Não foi possível entrar. Confira o e-mail e a senha.");
   }
 
-  async function createAccess() {
-    if (password.length < 8) {
-      setMessage("Crie uma senha com pelo menos 8 caracteres.");
+  async function setInvitePassword(event: FormEvent) {
+    event.preventDefault();
+    if (newPassword.length < 8) {
+      setMessage("A senha deve ter pelo menos 8 caracteres.");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setMessage("As senhas não coincidem.");
       return;
     }
     setBusy(true);
     setMessage("");
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: `${window.location.origin}/admin` },
-    });
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
     setBusy(false);
     if (error) setMessage(error.message);
-    else if (!data.session) setMessage("Enviamos uma confirmação para seu e-mail. Confirme e depois volte para entrar.");
+    else {
+      window.history.replaceState({}, "", "/admin");
+      setNeedsPassword(false);
+      setNewPassword("");
+      setConfirmPassword("");
+      setMessage("Senha criada. Sua conta de administrador está pronta.");
+    }
+  }
+
+  async function inviteAdmin(event: FormEvent) {
+    event.preventDefault();
+    setBusy(true);
+    setMessage("");
+    const { data, error } = await supabase.functions.invoke("manage-admins", {
+      body: { action: "invite", email: inviteEmail },
+    });
+    setBusy(false);
+    if (error) setMessage(await functionErrorMessage(error));
+    else {
+      setInviting(false);
+      setInviteEmail("");
+      await loadAdmins();
+      setMessage(data?.message || "Convite enviado por e-mail.");
+    }
+  }
+
+  async function setAdminActive(admin: AdminUser, active: boolean) {
+    const verb = active ? "reativar" : "desativar";
+    if (!window.confirm(`Deseja ${verb} o acesso de ${admin.email}?`)) return;
+    setBusy(true);
+    setMessage("");
+    const { data, error } = await supabase.functions.invoke("manage-admins", {
+      body: { action: "set-active", email: admin.email, active },
+    });
+    setBusy(false);
+    if (error) setMessage(await functionErrorMessage(error));
+    else {
+      await loadAdmins();
+      setMessage(data?.message || "Acesso atualizado.");
+    }
   }
 
   function openEditor(row?: Row) {
@@ -280,6 +354,25 @@ export function AdminDashboard() {
     await loadRows();
   }
 
+  if (authState === "ready" && needsPassword) {
+    return (
+      <main className="admin-login-shell">
+        <section className="admin-login-panel">
+          <Link className="admin-brand" href="/"><img src="/logo-agrestis.jpg" alt="" /><span>Espaço Agrestis</span></Link>
+          <form onSubmit={setInvitePassword}>
+            <p className="eyebrow">Convite aceito</p>
+            <h1>Crie sua senha</h1>
+            <p>Defina a senha que você usará para administrar o site.</p>
+            <label>Nova senha<input type="password" autoComplete="new-password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} required minLength={8} /></label>
+            <label>Confirmar senha<input type="password" autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} required minLength={8} /></label>
+            {message ? <p className="admin-message" role="status">{message}</p> : null}
+            <button className="button primary" disabled={busy} type="submit">Salvar senha</button>
+          </form>
+        </section>
+      </main>
+    );
+  }
+
   if (authState !== "ready") {
     return (
       <main className="admin-login-shell">
@@ -296,7 +389,6 @@ export function AdminDashboard() {
               <label>Senha<input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required minLength={8} /></label>
               {message ? <p className="admin-message" role="status">{message}</p> : null}
               <button className="button primary" disabled={busy} type="submit">Entrar</button>
-              <button className="admin-text-button" disabled={busy} type="button" onClick={createAccess}>Criar primeiro acesso</button>
             </form>
           )}
         </section>
@@ -313,19 +405,30 @@ export function AdminDashboard() {
 
       <div className="admin-workspace">
         <div className="admin-title-row">
-          <div><p className="eyebrow">Conteúdo</p><h1>Administração</h1></div>
-          <button className="button primary admin-add" type="button" onClick={() => openEditor()}><Plus size={18} />Adicionar</button>
+          <div><p className="eyebrow">{usersOpen ? "Acessos" : "Conteúdo"}</p><h1>Administração</h1></div>
+          <button className="button primary admin-add" type="button" onClick={() => usersOpen ? setInviting(true) : openEditor()}>{usersOpen ? <MailPlus size={18} /> : <Plus size={18} />}{usersOpen ? "Convidar" : "Adicionar"}</button>
         </div>
 
-        <nav className="admin-tabs" aria-label="Tipos de conteúdo">
+        <nav className="admin-tabs" aria-label="Áreas de administração">
           {tabs.map((item) => {
             const Icon = item.icon;
-            return <button className={tab === item.id ? "active" : ""} key={item.id} type="button" onClick={() => { setTab(item.id); setEditing(null); }}><Icon size={18} /><span>{item.label}</span></button>;
+            return <button className={!usersOpen && tab === item.id ? "active" : ""} key={item.id} type="button" onClick={() => { setUsersOpen(false); setTab(item.id); setEditing(null); }}><Icon size={18} /><span>{item.label}</span></button>;
           })}
+          <button className={usersOpen ? "active" : ""} type="button" onClick={() => { setUsersOpen(true); setEditing(null); }}><Users size={18} /><span>Usuários</span></button>
         </nav>
 
         {message ? <p className="admin-message" role="status">{message}</p> : null}
-        <section className="admin-list" aria-busy={busy}>
+        {usersOpen ? <section className="admin-list" aria-busy={busy}>
+          <div className="admin-list-heading"><h2>Administradores</h2><span>{admins.length} {admins.length === 1 ? "usuário" : "usuários"}</span></div>
+          {admins.length ? admins.map((admin) => (
+            <article className="admin-user-row" key={admin.email}>
+              <div className="admin-row-icon"><Users size={20} /></div>
+              <div className="admin-row-copy"><h3>{admin.email}</h3><p>{admin.email === currentAdminEmail ? "Sua conta" : "Administrador do site"}</p></div>
+              <span className={`publish-status ${admin.active ? "published" : "draft"}`}>{admin.active ? "Ativo" : "Inativo"}</span>
+              {admin.email !== currentAdminEmail ? <button className={`icon-button ${admin.active ? "danger" : ""}`} type="button" title={admin.active ? "Desativar acesso" : "Reativar acesso"} aria-label={admin.active ? `Desativar acesso de ${admin.email}` : `Reativar acesso de ${admin.email}`} onClick={() => setAdminActive(admin, !admin.active)}>{admin.active ? <UserX size={18} /> : <UserCheck size={18} />}</button> : <span className="admin-current-user">Você</span>}
+            </article>
+          )) : <div className="admin-empty"><p>Nenhum administrador encontrado.</p></div>}
+        </section> : <section className="admin-list" aria-busy={busy}>
           <div className="admin-list-heading"><h2>{tabs.find((item) => item.id === tab)?.label}</h2><span>{rows.length} {rows.length === 1 ? "item" : "itens"}</span></div>
           {rows.length ? rows.map((row) => (
             <article className="admin-row" key={row.id}>
@@ -339,7 +442,7 @@ export function AdminDashboard() {
               </div>
             </article>
           )) : <div className="admin-empty"><p>Nenhum item cadastrado.</p><button className="button secondary" type="button" onClick={() => openEditor()}><Plus size={18} />Adicionar primeiro item</button></div>}
-        </section>
+        </section>}
       </div>
 
       {editing ? <div className="admin-editor-backdrop" role="presentation">
@@ -360,6 +463,32 @@ export function AdminDashboard() {
           </form>
         </section>
       </div> : null}
+
+      {inviting ? <div className="admin-editor-backdrop" role="presentation">
+        <section className="admin-editor admin-user-editor" role="dialog" aria-modal="true" aria-labelledby="invite-admin-title">
+          <header><div><p className="eyebrow">Novo acesso</p><h2 id="invite-admin-title">Convidar administrador</h2></div><button className="icon-button" type="button" title="Fechar" aria-label="Fechar" onClick={() => setInviting(false)}><X size={20} /></button></header>
+          <form onSubmit={inviteAdmin}>
+            <div className="admin-form-grid">
+              <label className="wide">E-mail do novo administrador<input type="email" autoComplete="email" value={inviteEmail} onChange={(event) => setInviteEmail(event.target.value)} required /></label>
+              <p className="admin-field-help wide">Ele receberá um convite para confirmar o e-mail e criar a própria senha.</p>
+            </div>
+            <footer><button className="button secondary" type="button" onClick={() => setInviting(false)}>Cancelar</button><button className="button primary" disabled={busy} type="submit"><MailPlus size={18} />Enviar convite</button></footer>
+          </form>
+        </section>
+      </div> : null}
     </main>
   );
+}
+
+async function functionErrorMessage(error: unknown) {
+  const context = (error as { context?: Response } | null)?.context;
+  if (context) {
+    try {
+      const payload = await context.clone().json() as { error?: string };
+      if (payload.error) return payload.error;
+    } catch {
+      // Fall through to the SDK error below.
+    }
+  }
+  return error instanceof Error ? error.message : "Não foi possível concluir a operação.";
 }
